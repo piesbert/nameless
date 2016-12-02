@@ -1,0 +1,64 @@
+/* File:    version.hpp
+ * Project: nameless
+ * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
+ *
+ * Copyright (C) 2016 Sebastian Szymak
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License, version 3,
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef H7D185351_436C_4B52_BF47_6C5EEF26E9E9
+#define H7D185351_436C_4B52_BF47_6C5EEF26E9E9
+
+#include <string>
+#include <sstream>
+
+namespace nameless {
+
+#define NAMELESS_VERSION_MAJOR @VERSION_MAJOR@
+#define NAMELESS_VERSION_MINOR @VERSION_MINOR@
+#define NAMELESS_VERSION_PATCH @VERSION_PATCH@
+#define NAMELESS_PROJECT_NAME "@CMAKE_PROJECT_NAME@"
+
+class Version {
+public:
+    static int getMajor() {
+        return NAMELESS_VERSION_MAJOR;
+    }
+
+    static int getMinor() {
+        return NAMELESS_VERSION_MINOR;
+    }
+
+    static int getPatch() {
+        return NAMELESS_VERSION_PATCH;
+    }
+
+    static std::string getString() {
+        std::ostringstream version;
+
+        version << NAMELESS_VERSION_MAJOR << '.'
+                << NAMELESS_VERSION_MINOR << '.'
+                << NAMELESS_VERSION_PATCH;
+
+        return version.str();
+    }
+
+    static std::string getName() {
+        return NAMELESS_PROJECT_NAME;
+    }
+};
+
+} // namespace nameless
+
+#endif // H7D185351_436C_4B52_BF47_6C5EEF26E9E9
