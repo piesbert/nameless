@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    task.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#include "engine/core/task.hpp"
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
-
-    engine.start();
-
-    return 0;
+Task::Task(TaskObserverInterface& taskObserver)
+: m_taskObserver(taskObserver) {
 }
+
+Task::~Task() {
+}
+
+void Task::run() const {
+}
+
+} // namespace core
+} // namespace engine
+} // namespace nameless

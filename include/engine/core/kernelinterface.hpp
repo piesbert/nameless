@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    kernelinterface.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#define H11279318_97F1_48DC_9DFA_C6109C4AD6AF
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
+class KernelInterface {
+public:
+    virtual ~KernelInterface() {};
 
-    engine.start();
+    virtual void start() = 0;
+    virtual void kill() = 0;
+};
 
-    return 0;
-}
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H11279318_97F1_48DC_9DFA_C6109C4AD6AF

@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    moduleinterface.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
+#define H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
+class TaskObserverInterface;
 
-    engine.start();
+class ModuleInterface {
+public:
+    virtual ~ModuleInterface() {};
 
-    return 0;
-}
+    virtual void build() = 0;
+    virtual TaskObserverInterface& getObserver() const = 0;
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H5607D8B1_D34D_4197_B77A_0346C9D4EC4D

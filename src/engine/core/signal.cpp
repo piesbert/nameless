@@ -1,4 +1,4 @@
-/* File:    interface/engine.hpp
+/* File:    signal.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,25 +17,29 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
-#define H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#include "engine/core/signal.hpp"
+
+#include "engine/core/kernel.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
-namespace interface {
 
-class Engine {
-public:
-    virtual ~Engine() {};
+Signal::Signal(KernelInterface& kernel)
+: m_kernel(kernel) {
+}
 
-    virtual bool build() = 0;
-    virtual bool run() = 0;
-};
+Signal::~Signal() {
+}
 
-} // namespace interface
+void Signal::send(Id id) const {
+    switch (id) {
+        case Id::KILL:
+            m_kernel.kill();
+            break;
+    }
+}
+
 } // namespace core
 } // namespace engine
 } // namespace nameless
-
-#endif // H3015AC03_D8D2_4406_9F6A_BDEB46404EE5

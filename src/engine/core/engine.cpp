@@ -19,6 +19,14 @@
 
 #include "engine/core/engine.hpp"
 
+#include "engine/core/kernel.hpp"
+#include "engine/core/signal.hpp"
+#include "engine/core/task.hpp"
+
+#include "engine/input/module.hpp"
+
+#include "engine/log/log.hpp"
+
 namespace nameless {
 namespace engine {
 namespace core {
@@ -29,12 +37,23 @@ Engine::Engine() {
 Engine::~Engine() {
 }
 
-bool Engine::build() {
-    return true;
+void Engine::start() {
+    buildKernel();
+    buildModules();
+    
+    m_kernel->start();
 }
 
-bool Engine::run() {
-    return true;
+void Engine::buildKernel() {
+    m_kernel = std::make_unique<Kernel>();
+    m_signal = std::make_unique<Signal>(*m_kernel);
+}
+
+void Engine::buildModules() {
+    m_inputModule = std::make_unique<input::Module>();
+    m_inputModule->build();
+
+    m_inputTask = std::make_unique<Task>(m_inputModule->getObserver());
 }
 
 } // namespace core

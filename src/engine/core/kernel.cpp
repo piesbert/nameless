@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    kernel.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#include "engine/core/kernel.hpp"
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
-
-    engine.start();
-
-    return 0;
+Kernel::Kernel() {
 }
+
+Kernel::~Kernel() {
+}
+
+void Kernel::start() {
+}
+
+void Kernel::kill() {
+    m_running = false;
+}
+
+} // namespace core
+} // namespace engine
+} // namespace nameless

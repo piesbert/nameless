@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    module.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,28 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#include "engine/input/module.hpp"
 
-using namespace nameless::engine::core;
+#include "engine/input/taskobserver.hpp"
 
-int main(int argc, char** argv) {
-    Engine engine;
+namespace nameless {
+namespace engine {
+namespace input {
 
-    engine.start();
-
-    return 0;
+Module::Module() {
 }
+
+Module::~Module() {
+}
+
+void Module::build() {
+    m_taskObserver = std::make_unique<TaskObserver>();
+}
+
+core::TaskObserverInterface& Module::getObserver() const {
+    return *m_taskObserver;
+}
+
+} // namespace input
+} // namespace engine
+} // namespace nameless

@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    task.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
+#define HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
 
-using namespace nameless::engine::core;
+#include "engine/core/taskinterface.hpp"
 
-int main(int argc, char** argv) {
-    Engine engine;
+namespace nameless {
+namespace engine {
+namespace core {
 
-    engine.start();
+class Task: public TaskInterface {
+public:
+    Task(TaskObserverInterface& taskObserver);
+    virtual ~Task();
 
-    return 0;
-}
+    virtual void run() const;
+
+    Task(const Task&) = delete;
+    Task& operator=(const Task&) = delete;
+
+private:
+    TaskObserverInterface& m_taskObserver;
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // HC5EAACEA_0CC0_4458_ACFF_5E1881955C15

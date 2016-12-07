@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    engineinterface.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#define H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
+class EngineInterface {
+public:
+    virtual ~EngineInterface() {};
 
-    engine.start();
+    virtual void start() = 0;
+};
 
-    return 0;
-}
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H3015AC03_D8D2_4406_9F6A_BDEB46404EE5

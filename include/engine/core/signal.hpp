@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    signal.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H83B3828A_93DA_4049_83AD_FBB4F94637DC
+#define H83B3828A_93DA_4049_83AD_FBB4F94637DC
 
-using namespace nameless::engine::core;
+#include "engine/core/signalinterface.hpp"
+#include "engine/core/kernelinterface.hpp"
 
-int main(int argc, char** argv) {
-    Engine engine;
+namespace nameless {
+namespace engine {
+namespace core {
 
-    engine.start();
+class Signal: public SignalInterface {
+public:
+    Signal(KernelInterface& kernel);
+    virtual ~Signal();
 
-    return 0;
-}
+    virtual void send(Id id) const;
+
+    Signal(const Signal&) = delete;
+    Signal& operator=(const Signal&) = delete;
+
+private:
+    KernelInterface& m_kernel;
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H83B3828A_93DA_4049_83AD_FBB4F94637DC

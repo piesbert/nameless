@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    taskobserver.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#include "engine/input/taskobserver.hpp"
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace input {
 
-int main(int argc, char** argv) {
-    Engine engine;
-
-    engine.start();
-
-    return 0;
+TaskObserver::TaskObserver() {
 }
+
+TaskObserver::~TaskObserver() {
+}
+
+void TaskObserver::update() {
+}
+
+} // namespace input
+} // namespace engine
+} // namespace nameless

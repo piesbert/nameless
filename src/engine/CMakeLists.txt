@@ -22,11 +22,14 @@ set(ENGINE_NAME engine)
 
 set(CORE_SOURCES
     ./core/engine.cpp
+    ./core/kernel.cpp
+    ./core/signal.cpp
+    ./core/task.cpp
     )
 
 set(LOG_SOURCES
     ./log/log.cpp
-   )
+    )
 
 #set(KERNEL_SOURCES
 #        ./kernel/gameloop.cpp
@@ -35,10 +38,10 @@ set(LOG_SOURCES
 #        ./kernel/scheduler.cpp
 #        )
 #
-#set(INPUT_SOURCES
-#        ./input/input.cpp
-#        ./input/observer.cpp
-#        )
+set(INPUT_SOURCES
+    ./input/module.cpp
+    ./input/taskobserver.cpp
+    )
 #        
 #set(MM_SOURCES
 #        ./mm/manager.cpp
@@ -64,7 +67,7 @@ add_library(
     ${ENGINE_NAME}
 #        ${CONFIG_SOURCES}
     ${CORE_SOURCES}
-#        ${INPUT_SOURCES}
+    ${INPUT_SOURCES}
 #        ${KERNEL_SOURCES}
     ${LOG_SOURCES}
 #        ${MM_SOURCES}

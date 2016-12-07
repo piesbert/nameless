@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    kernel.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
+#define H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
 
-using namespace nameless::engine::core;
+#include "engine/core/kernelinterface.hpp"
 
-int main(int argc, char** argv) {
-    Engine engine;
+namespace nameless {
+namespace engine {
+namespace core {
 
-    engine.start();
+class Kernel: public KernelInterface {
+public:
+    Kernel();
+    virtual ~Kernel();
 
-    return 0;
-}
+    virtual void start() override;
+    virtual void kill() override;
+
+    Kernel(const Kernel&) = delete;
+    Kernel& operator=(const Kernel&) = delete;
+
+private:
+    bool m_running {true};
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H7858F920_30DE_45F2_8E2A_32D08DAE0DFA

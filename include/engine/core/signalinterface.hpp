@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    signalinterface.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,26 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
+#define HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
+class SignalInterface {
+public:
+    virtual ~SignalInterface() {};
 
-    engine.start();
+    enum class Id {
+        KILL
+    };
 
-    return 0;
-}
+    virtual void send(Id id) const = 0;
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2

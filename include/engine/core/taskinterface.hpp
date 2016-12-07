@@ -1,4 +1,4 @@
-/* File:    main.cpp
+/* File:    taskinterface.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,14 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/engine.hpp"
+#ifndef H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#define H4C9483F6_59B4_488D_85ED_7D0AABD6416B
 
-using namespace nameless::engine::core;
+namespace nameless {
+namespace engine {
+namespace core {
 
-int main(int argc, char** argv) {
-    Engine engine;
+class TaskObserverInterface;
 
-    engine.start();
+class TaskInterface {
+public:
+    virtual ~TaskInterface() {};
 
-    return 0;
-}
+    virtual void run() const = 0;
+};
+
+} // namespace core
+} // namespace engine
+} // namespace nameless
+
+#endif // H4C9483F6_59B4_488D_85ED_7D0AABD6416B
