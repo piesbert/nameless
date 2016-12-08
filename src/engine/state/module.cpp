@@ -1,4 +1,4 @@
-/* File:    kernel.cpp
+/* File:    module.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,37 +17,29 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/kernel.hpp"
+#include "engine/state/module.hpp"
 
-#include "engine/core/task.hpp"
+#include "engine/state/taskobserver.hpp"
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace state {
 
-Kernel::Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask) 
-: m_inputTask {inputTask},
-  m_soundTask {soundTask},
-  m_stateTask {stateTask},
-  m_videoTask {videoTask} {
+Module::Module(core::SignalInterface& signal)
+: m_signal {signal} {
 }
 
-Kernel::~Kernel() {
+Module::~Module() {
 }
 
-void Kernel::start() {
-    // while (m_running) {
-    m_inputTask.run();
-    m_soundTask.run();
-    m_stateTask.run();
-    m_videoTask.run();
-    // }
+void Module::build() {
+    m_taskObserver = std::make_unique<TaskObserver>();
 }
 
-void Kernel::kill() {
-    m_running = false;
+core::TaskObserverInterface* Module::getObserver() const {
+    return m_taskObserver.get();
 }
 
-} // namespace core
+} // namespace state
 } // namespace engine
 } // namespace nameless

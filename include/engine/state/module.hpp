@@ -1,4 +1,4 @@
-/* File:    kernel.cpp
+/* File:    module.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,37 +17,38 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/kernel.hpp"
+#ifndef HDA815111_4A64_4F96_965B_09F15634D6EC
+#define HDA815111_4A64_4F96_965B_09F15634D6EC
 
-#include "engine/core/task.hpp"
+#include "engine/core/moduleinterface.hpp"
+
+#include "engine/core/signalinterface.hpp"
+
+#include <memory>
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace state {
 
-Kernel::Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask) 
-: m_inputTask {inputTask},
-  m_soundTask {soundTask},
-  m_stateTask {stateTask},
-  m_videoTask {videoTask} {
-}
+class Module: public core::ModuleInterface {
+public:
+    Module(core::SignalInterface& signal);
+    virtual ~Module();
 
-Kernel::~Kernel() {
-}
+    virtual void build() override;
+    virtual core::TaskObserverInterface* getObserver() const override;
 
-void Kernel::start() {
-    // while (m_running) {
-    m_inputTask.run();
-    m_soundTask.run();
-    m_stateTask.run();
-    m_videoTask.run();
-    // }
-}
+    Module(const Module&) = delete;
+    Module& operator=(const Module&) = delete;
 
-void Kernel::kill() {
-    m_running = false;
-}
+private:
+    core::SignalInterface& m_signal;
 
-} // namespace core
+    std::unique_ptr<core::TaskObserverInterface> m_taskObserver;
+};
+
+} // namespace state
 } // namespace engine
 } // namespace nameless
+
+#endif // HDA815111_4A64_4F96_965B_09F15634D6EC

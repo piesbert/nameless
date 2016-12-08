@@ -25,6 +25,9 @@
 #include "engine/core/task.hpp"
 
 #include "engine/input/module.hpp"
+#include "engine/sound/module.hpp"
+#include "engine/state/module.hpp"
+#include "engine/video/module.hpp"
 
 #include "engine/log/log.hpp"
 
@@ -56,16 +59,28 @@ bool Engine::start() {
 
 void Engine::buildKernel() {
     m_inputTask = std::make_unique<Task>();
+    m_soundTask = std::make_unique<Task>();
+    m_stateTask = std::make_unique<Task>();
+    m_videoTask = std::make_unique<Task>();
 
-    m_kernel = std::make_unique<Kernel>(*m_inputTask);
+    m_kernel = std::make_unique<Kernel>(*m_inputTask, *m_soundTask, *m_stateTask, *m_videoTask);
     m_signal = std::make_unique<Signal>(*m_kernel);
 }
 
 bool Engine::buildModules() {
     m_inputModule = std::make_unique<input::Module>(*m_signal);
     m_inputModule->build();
+    m_soundModule = std::make_unique<sound::Module>(*m_signal);
+    m_soundModule->build();
+    m_stateModule = std::make_unique<state::Module>(*m_signal);
+    m_stateModule->build();
+    m_videoModule = std::make_unique<video::Module>(*m_signal);
+    m_videoModule->build();
 
     m_inputTask->attach(m_inputModule->getObserver());
+    m_soundTask->attach(m_soundModule->getObserver());
+    m_stateTask->attach(m_stateModule->getObserver());
+    m_videoTask->attach(m_videoModule->getObserver());
 
     return true;
 }

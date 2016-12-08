@@ -1,4 +1,4 @@
-/* File:    kernel.cpp
+/* File:    taskobserver.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,37 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/kernel.hpp"
+#include "engine/sound/taskobserver.hpp"
 
-#include "engine/core/task.hpp"
+#include "engine/log/log.hpp"
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace sound {
 
-Kernel::Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask) 
-: m_inputTask {inputTask},
-  m_soundTask {soundTask},
-  m_stateTask {stateTask},
-  m_videoTask {videoTask} {
+TaskObserver::TaskObserver() {
 }
 
-Kernel::~Kernel() {
+TaskObserver::~TaskObserver() {
 }
 
-void Kernel::start() {
-    // while (m_running) {
-    m_inputTask.run();
-    m_soundTask.run();
-    m_stateTask.run();
-    m_videoTask.run();
-    // }
+void TaskObserver::update() {
+    LOGINF("Sound module updated.");
 }
 
-void Kernel::kill() {
-    m_running = false;
-}
-
-} // namespace core
+} // namespace sound
 } // namespace engine
 } // namespace nameless

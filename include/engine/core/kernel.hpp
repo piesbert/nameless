@@ -30,7 +30,7 @@ namespace core {
 
 class Kernel: public KernelInterface {
 public:
-    Kernel(TaskInterface& inputTask);
+    Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask);
     virtual ~Kernel();
     
     virtual void start() override;
@@ -43,6 +43,9 @@ private:
     bool m_running {true};
 
     TaskInterface& m_inputTask;
+    TaskInterface& m_soundTask;
+    TaskInterface& m_stateTask;
+    TaskInterface& m_videoTask;
 };
 
 } // namespace core

@@ -16,10 +16,6 @@
 
 set(ENGINE_NAME engine)
 
-#set(CONFIG_SOURCES
-#        ./config/config.cpp
-#        )
-
 set(CORE_SOURCES
     ./core/engine.cpp
     ./core/kernel.cpp
@@ -32,47 +28,32 @@ set(LOG_SOURCES
     ./log/log.cpp
     )
 
-#set(KERNEL_SOURCES
-#        ./kernel/gameloop.cpp
-#        ./kernel/kernel.cpp
-#        ./kernel/task.cpp
-#        ./kernel/scheduler.cpp
-#        )
-#
 set(INPUT_SOURCES
     ./input/module.cpp
     ./input/taskobserver.cpp
     )
-#        
-#set(MM_SOURCES
-#        ./mm/manager.cpp
-#        ./mm/object.cpp
-#        )
-#
-#set(SOUND_SOURCES
-#        ./sound/sound.cpp
-#        ./sound/observer.cpp
-#        )
-#
-#set(STATE_SOURCES
-#        ./state/state.cpp
-#        ./state/observer.cpp
-#        )
-#
-#set(VIDEO_SOURCES
-#        ./video/video.cpp
-#        ./video/observer.cpp
-#        )
+        
+set(SOUND_SOURCES
+    ./sound/module.cpp
+    ./sound/taskobserver.cpp
+    )
+
+set(STATE_SOURCES
+    ./state/module.cpp
+    ./state/taskobserver.cpp
+    )
+
+set(VIDEO_SOURCES
+    ./video/module.cpp
+    ./video/taskobserver.cpp
+    )
 
 add_library(
     ${ENGINE_NAME}
-#        ${CONFIG_SOURCES}
     ${CORE_SOURCES}
     ${INPUT_SOURCES}
-#        ${KERNEL_SOURCES}
     ${LOG_SOURCES}
-#        ${MM_SOURCES}
-#        ${SOUND_SOURCES}
-#        ${STATE_SOURCES}
-#        ${VIDEO_SOURCES}
-        )
+    ${SOUND_SOURCES}
+    ${STATE_SOURCES}
+    ${VIDEO_SOURCES}
+    )

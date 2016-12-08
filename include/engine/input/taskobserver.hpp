@@ -33,7 +33,6 @@ public:
 
     virtual void update() override;
 
-private:
     TaskObserver(const TaskObserver&) = delete;
     TaskObserver& operator=(const TaskObserver&) = delete;
 };
