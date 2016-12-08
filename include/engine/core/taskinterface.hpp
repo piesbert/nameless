@@ -30,6 +30,7 @@ class TaskInterface {
 public:
     virtual ~TaskInterface() {};
 
+    virtual void attach(TaskObserverInterface* taskObserver) = 0;
     virtual void run() const = 0;
 };
 

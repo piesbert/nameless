@@ -25,7 +25,8 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-Module::Module() {
+Module::Module(core::SignalInterface& signal)
+: m_signal {signal} {
 }
 
 Module::~Module() {
@@ -35,8 +36,8 @@ void Module::build() {
     m_taskObserver = std::make_unique<TaskObserver>();
 }
 
-core::TaskObserverInterface& Module::getObserver() const {
-    return *m_taskObserver;
+core::TaskObserverInterface* Module::getObserver() const {
+    return m_taskObserver.get();
 }
 
 } // namespace input

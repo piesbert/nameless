@@ -32,7 +32,7 @@ public:
     Signal(KernelInterface& kernel);
     virtual ~Signal();
 
-    virtual void send(Id id) const;
+    virtual void kill() const override;
 
     Signal(const Signal&) = delete;
     Signal& operator=(const Signal&) = delete;

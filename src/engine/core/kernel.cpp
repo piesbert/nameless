@@ -19,17 +19,23 @@
 
 #include "engine/core/kernel.hpp"
 
+#include "engine/core/task.hpp"
+
 namespace nameless {
 namespace engine {
 namespace core {
 
-Kernel::Kernel() {
+Kernel::Kernel(TaskInterface& inputTask) 
+: m_inputTask {inputTask} {
 }
 
 Kernel::~Kernel() {
 }
 
 void Kernel::start() {
+    // while (m_running) {
+    m_inputTask.run();
+    // }
 }
 
 void Kernel::kill() {

@@ -20,6 +20,7 @@
 #include "engine/core/engine.hpp"
 
 #include "engine/core/kernel.hpp"
+#include "engine/core/media.hpp"
 #include "engine/core/signal.hpp"
 #include "engine/core/task.hpp"
 
@@ -37,23 +38,36 @@ Engine::Engine() {
 Engine::~Engine() {
 }
 
-void Engine::start() {
-    buildKernel();
-    buildModules();
-    
-    m_kernel->start();
+bool Engine::start() {
+    bool retval {false};
+
+    m_media = std::make_unique<Media>();
+
+    if (m_media->init()) {
+        buildKernel();
+        if (buildModules()) {
+            m_kernel->start();
+            retval = true;
+        }
+    }
+
+    return retval;
 }
 
 void Engine::buildKernel() {
-    m_kernel = std::make_unique<Kernel>();
+    m_inputTask = std::make_unique<Task>();
+
+    m_kernel = std::make_unique<Kernel>(*m_inputTask);
     m_signal = std::make_unique<Signal>(*m_kernel);
 }
 
-void Engine::buildModules() {
-    m_inputModule = std::make_unique<input::Module>();
+bool Engine::buildModules() {
+    m_inputModule = std::make_unique<input::Module>(*m_signal);
     m_inputModule->build();
 
-    m_inputTask = std::make_unique<Task>(m_inputModule->getObserver());
+    m_inputTask->attach(m_inputModule->getObserver());
+
+    return true;
 }
 
 } // namespace core

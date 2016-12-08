@@ -22,22 +22,25 @@
 
 #include "engine/core/taskinterface.hpp"
 
+#include "engine/core/taskobserverinterface.hpp"
+
 namespace nameless {
 namespace engine {
 namespace core {
 
 class Task: public TaskInterface {
 public:
-    Task(TaskObserverInterface& taskObserver);
+    Task();
     virtual ~Task();
 
+    virtual void attach(TaskObserverInterface* taskObserver);
     virtual void run() const;
 
     Task(const Task&) = delete;
     Task& operator=(const Task&) = delete;
 
 private:
-    TaskObserverInterface& m_taskObserver;
+    TaskObserverInterface* m_taskObserver;
 };
 
 } // namespace core

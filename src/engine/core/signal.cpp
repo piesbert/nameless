@@ -26,18 +26,14 @@ namespace engine {
 namespace core {
 
 Signal::Signal(KernelInterface& kernel)
-: m_kernel(kernel) {
+: m_kernel {kernel} {
 }
 
 Signal::~Signal() {
 }
 
-void Signal::send(Id id) const {
-    switch (id) {
-        case Id::KILL:
-            m_kernel.kill();
-            break;
-    }
+void Signal::kill() const {
+    m_kernel.kill();
 }
 
 } // namespace core

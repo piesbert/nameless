@@ -23,9 +23,10 @@
 #include "engine/core/engineinterface.hpp"
 
 #include "engine/core/kernelinterface.hpp"
+#include "engine/core/mediainterface.hpp"
+#include "engine/core/moduleinterface.hpp"
 #include "engine/core/signalinterface.hpp"
 #include "engine/core/taskinterface.hpp"
-#include "engine/core/moduleinterface.hpp"
 
 #include <memory>
 
@@ -38,7 +39,7 @@ public:
     Engine();
     virtual ~Engine();
 
-    virtual void start() override;
+    virtual bool start() override;
 
     Engine(const Engine&) = delete;
     Engine& operator=(const Engine&) = delete;
@@ -47,12 +48,20 @@ private:
     std::unique_ptr<KernelInterface> m_kernel;
     std::unique_ptr<SignalInterface> m_signal;
 
+    std::unique_ptr<MediaInterface> m_media;
+
     std::unique_ptr<ModuleInterface> m_inputModule;
+    std::unique_ptr<ModuleInterface> m_soundModule;
+    std::unique_ptr<ModuleInterface> m_stateModule;
+    std::unique_ptr<ModuleInterface> m_videoModule;
 
     std::unique_ptr<TaskInterface> m_inputTask;
+    std::unique_ptr<TaskInterface> m_soundTask;
+    std::unique_ptr<TaskInterface> m_stateTask;
+    std::unique_ptr<TaskInterface> m_videoTask;
 
     void buildKernel();
-    void buildModules();
+    bool buildModules();
 };
 
 } // namespace core

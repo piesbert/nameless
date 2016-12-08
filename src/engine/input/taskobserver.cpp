@@ -19,6 +19,8 @@
 
 #include "engine/input/taskobserver.hpp"
 
+#include "engine/log/log.hpp"
+
 namespace nameless {
 namespace engine {
 namespace input {
@@ -30,6 +32,7 @@ TaskObserver::~TaskObserver() {
 }
 
 void TaskObserver::update() {
+    LOGINF("Input module updated.");
 }
 
 } // namespace input

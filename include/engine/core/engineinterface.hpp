@@ -28,7 +28,7 @@ class EngineInterface {
 public:
     virtual ~EngineInterface() {};
 
-    virtual void start() = 0;
+    virtual bool start() = 0;
 };
 
 } // namespace core

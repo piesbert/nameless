@@ -31,7 +31,7 @@ public:
     virtual ~ModuleInterface() {};
 
     virtual void build() = 0;
-    virtual TaskObserverInterface& getObserver() const = 0;
+    virtual TaskObserverInterface* getObserver() const = 0;
 };
 
 } // namespace core

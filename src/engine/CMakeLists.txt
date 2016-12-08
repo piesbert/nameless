@@ -23,6 +23,7 @@ set(ENGINE_NAME engine)
 set(CORE_SOURCES
     ./core/engine.cpp
     ./core/kernel.cpp
+    ./core/media.cpp
     ./core/signal.cpp
     ./core/task.cpp
     )

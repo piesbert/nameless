@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    media.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,38 +17,42 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-#define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
 
-#include "engine/core/moduleinterface.hpp"
+#include "engine/core/mediainterface.hpp"
 
-#include "engine/core/signalinterface.hpp"
-
-#include <memory>
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <SDL.h>
+#include <SDL_opengl.h>
 
 namespace nameless {
 namespace engine {
-namespace input {
+namespace core {
 
-class Module: public core::ModuleInterface {
+class Media: public MediaInterface {
 public:
-    Module(core::SignalInterface& signal);
-    virtual ~Module();
+    Media();
+    virtual ~Media();
 
-    virtual void build() override;
-    virtual core::TaskObserverInterface* getObserver() const override;
+    virtual bool init() override;
 
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
-
+    Media(const Media&) = delete;
+    Media& operator=(const Media&) = delete;
+    
 private:
-    core::SignalInterface& m_signal;
+    SDL_Window *m_window;
+    SDL_GLContext m_glContext;
 
-    std::unique_ptr<core::TaskObserverInterface> m_taskObserver;
+    void setGlAttributes() const;
+    void createWindow();
 };
 
-} // namespace input
+} // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#endif // H57EE9E60_7546_4F85_9C99_9B7E010B1F4B

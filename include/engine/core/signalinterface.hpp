@@ -28,11 +28,7 @@ class SignalInterface {
 public:
     virtual ~SignalInterface() {};
 
-    enum class Id {
-        KILL
-    };
-
-    virtual void send(Id id) const = 0;
+    virtual void kill() const = 0;
 };
 
 } // namespace core

@@ -22,15 +22,17 @@
 
 #include "engine/core/kernelinterface.hpp"
 
+#include "engine/core/taskinterface.hpp"
+
 namespace nameless {
 namespace engine {
 namespace core {
 
 class Kernel: public KernelInterface {
 public:
-    Kernel();
+    Kernel(TaskInterface& inputTask);
     virtual ~Kernel();
-
+    
     virtual void start() override;
     virtual void kill() override;
 
@@ -39,6 +41,8 @@ public:
 
 private:
     bool m_running {true};
+
+    TaskInterface& m_inputTask;
 };
 
 } // namespace core

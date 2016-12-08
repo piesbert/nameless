@@ -23,14 +23,21 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-Task::Task(TaskObserverInterface& taskObserver)
-: m_taskObserver(taskObserver) {
+Task::Task()
+: m_taskObserver {nullptr} {
 }
 
 Task::~Task() {
 }
 
+void Task::attach(TaskObserverInterface* taskObserver) {
+    m_taskObserver = taskObserver;
+}
+
 void Task::run() const {
+    if (m_taskObserver != nullptr) {
+        m_taskObserver->update();
+    }
 }
 
 } // namespace core
