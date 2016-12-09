@@ -33,8 +33,8 @@ public:
     Task();
     virtual ~Task();
 
-    virtual void attach(TaskObserverIF* taskObserver);
-    virtual void run() const;
+    virtual void attach(TaskObserverIF* taskObserver) override;
+    virtual void run() const override;
 
     Task(const Task&) = delete;
     Task& operator=(const Task&) = delete;

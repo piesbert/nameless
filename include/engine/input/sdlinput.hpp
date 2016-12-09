@@ -35,7 +35,7 @@ public:
     SdlInput(core::SignalIF& signal);
     virtual ~SdlInput();
 
-    virtual int handleEvents();
+    virtual int handleEvents() override;
 
     SdlInput(const SdlInput&) = delete;
     SdlInput& operator=(const SdlInput&) = delete;

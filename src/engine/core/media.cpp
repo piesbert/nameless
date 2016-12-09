@@ -66,11 +66,11 @@ bool Media::init() {
     else {
         glewExperimental = GL_TRUE;
         glewInit();
-    }
 
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    SDL_GL_SwapWindow(m_window);
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
+        SDL_GL_SwapWindow(m_window);
+    }
 
     return retval;
 }
