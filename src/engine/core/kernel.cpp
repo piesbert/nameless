@@ -20,28 +20,35 @@
 #include "engine/core/kernel.hpp"
 
 #include "engine/core/task.hpp"
+#include "engine/log/log.hpp"
+
+#include <chrono>
+#include <thread>
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-Kernel::Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask) 
+Kernel::Kernel(TaskIF& inputTask, TaskIF& soundTask, TaskIF& stateTask, TaskIF& videoTask) 
 : m_inputTask {inputTask},
   m_soundTask {soundTask},
   m_stateTask {stateTask},
   m_videoTask {videoTask} {
+    LOGINF("Kernel init.");
 }
 
 Kernel::~Kernel() {
+    LOGINF("Kernel shutdown.");
 }
 
 void Kernel::start() {
-    // while (m_running) {
-    m_inputTask.run();
-    m_soundTask.run();
-    m_stateTask.run();
-    m_videoTask.run();
-    // }
+    while (m_running) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        m_inputTask.run();
+        m_soundTask.run();
+        m_stateTask.run();
+        m_videoTask.run();
+    }
 }
 
 void Kernel::kill() {

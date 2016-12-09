@@ -19,20 +19,19 @@
 
 #include "engine/input/taskobserver.hpp"
 
-#include "engine/log/log.hpp"
-
 namespace nameless {
 namespace engine {
 namespace input {
 
-TaskObserver::TaskObserver() {
+TaskObserver::TaskObserver(SdlInputIF& sdlInput)
+: m_sdlInput {sdlInput} {
 }
 
 TaskObserver::~TaskObserver() {
 }
 
 void TaskObserver::update() {
-    LOGINF("Input module updated.");
+    m_sdlInput.handleEvents();
 }
 
 } // namespace input

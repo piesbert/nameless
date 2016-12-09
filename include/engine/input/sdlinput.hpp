@@ -1,4 +1,4 @@
-/* File:    kernelinterface.hpp
+/* File:    sdlinput.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,23 +17,36 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H11279318_97F1_48DC_9DFA_C6109C4AD6AF
-#define H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#ifndef HCC36A64A_1A1B_4154_B016_8150C1E169E4
+#define HCC36A64A_1A1B_4154_B016_8150C1E169E4
+
+#include "engine/input/sdlinputif.hpp"
+
+#include "engine/core/signalif.hpp"
+
+#include <SDL.h>
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace input {
 
-class KernelInterface {
+class SdlInput: public SdlInputIF {
 public:
-    virtual ~KernelInterface() {};
+    SdlInput(core::SignalIF& signal);
+    virtual ~SdlInput();
 
-    virtual void start() = 0;
-    virtual void kill() = 0;
+    virtual int handleEvents();
+
+    SdlInput(const SdlInput&) = delete;
+    SdlInput& operator=(const SdlInput&) = delete;
+
+private:
+    core::SignalIF& m_signal;
+    SDL_Event m_event;
 };
 
-} // namespace core
+} // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#endif // HCC36A64A_1A1B_4154_B016_8150C1E169E4

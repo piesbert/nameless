@@ -20,13 +20,13 @@
 #ifndef HF2FAE35A_5BC5_43FD_B9E2_CA3677C999D1
 #define HF2FAE35A_5BC5_43FD_B9E2_CA3677C999D1
 
-#include "engine/core/taskobserverinterface.hpp"
+#include "engine/core/taskobserverif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace sound {
 
-class TaskObserver: public core::TaskObserverInterface {
+class TaskObserver: public core::TaskObserverIF {
 public:
     TaskObserver();
     virtual ~TaskObserver();

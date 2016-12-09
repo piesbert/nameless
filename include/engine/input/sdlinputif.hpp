@@ -1,4 +1,4 @@
-/* File:    mediainterface.hpp
+/* File:    sdlinputif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
-#define H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#ifndef HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#define HB145BE7E_B032_4C23_8B5F_3318D17F7480
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace input {
 
-class MediaInterface {
+class SdlInputIF {
 public:
-    virtual ~MediaInterface() {};
+    virtual ~SdlInputIF() {};
 
-    virtual bool init() = 0;
+    virtual int handleEvents() = 0;
 };
 
-} // namespace core
+} // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#endif // HB145BE7E_B032_4C23_8B5F_3318D17F7480

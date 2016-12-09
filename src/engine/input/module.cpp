@@ -19,13 +19,14 @@
 
 #include "engine/input/module.hpp"
 
+#include "engine/input/sdlinput.hpp"
 #include "engine/input/taskobserver.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-Module::Module(core::SignalInterface& signal)
+Module::Module(core::SignalIF& signal)
 : m_signal {signal} {
 }
 
@@ -33,10 +34,11 @@ Module::~Module() {
 }
 
 void Module::build() {
-    m_taskObserver = std::make_unique<TaskObserver>();
+    m_sdlInput = std::make_unique<SdlInput>(m_signal);
+    m_taskObserver = std::make_unique<TaskObserver>(*m_sdlInput);
 }
 
-core::TaskObserverInterface* Module::getObserver() const {
+core::TaskObserverIF* Module::getObserver() const {
     return m_taskObserver.get();
 }
 

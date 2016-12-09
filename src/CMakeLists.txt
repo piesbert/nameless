@@ -22,6 +22,8 @@ set(APP_LIBS
     )
 
 add_executable(${APP_NAME} ${APP_SOURCES})
-target_link_libraries(${APP_NAME} ${APP_LIBS} ${SDL2_LIBRARY} ${GLEW_LIBRARIES})
+target_link_libraries(${APP_NAME} ${APP_LIBS} ${SDL2_LIBRARY} ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES})
+
+message(${GLEW_LIBRARIES})
 
 add_subdirectory(engine)

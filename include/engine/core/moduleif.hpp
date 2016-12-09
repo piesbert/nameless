@@ -1,4 +1,4 @@
-/* File:    moduleinterface.hpp
+/* File:    moduleif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -24,14 +24,14 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-class TaskObserverInterface;
+class TaskObserverIF;
 
-class ModuleInterface {
+class ModuleIF {
 public:
-    virtual ~ModuleInterface() {};
+    virtual ~ModuleIF() {};
 
     virtual void build() = 0;
-    virtual TaskObserverInterface* getObserver() const = 0;
+    virtual TaskObserverIF* getObserver() const = 0;
 };
 
 } // namespace core

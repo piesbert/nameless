@@ -30,6 +30,7 @@ set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 
 find_package(SDL2 REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(OpenGL REQUIRED)
 
 set(GCC_PROJECT_COMPILE_FLAGS "-std=c++14 -Wall -g")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${GCC_PROJECT_COMPILE_FLAGS})
@@ -42,6 +43,8 @@ include_directories(
     "${SDL2_INCLUDE_DIR}"
     "${GLEW_INCLUDE_DIRS}"
     )
+
+message(${GLEW_INCLUDE_DIRS})
 
 #add_subdirectory("doc")
 add_subdirectory(include)

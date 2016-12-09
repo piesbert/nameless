@@ -20,17 +20,17 @@
 #ifndef H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
 #define H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
 
-#include "engine/core/kernelinterface.hpp"
+#include "engine/core/kernelif.hpp"
 
-#include "engine/core/taskinterface.hpp"
+#include "engine/core/taskif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Kernel: public KernelInterface {
+class Kernel: public KernelIF {
 public:
-    Kernel(TaskInterface& inputTask, TaskInterface& soundTask, TaskInterface& stateTask, TaskInterface& videoTask);
+    Kernel(TaskIF& inputTask, TaskIF& soundTask, TaskIF& stateTask, TaskIF& videoTask);
     virtual ~Kernel();
     
     virtual void start() override;
@@ -42,10 +42,10 @@ public:
 private:
     bool m_running {true};
 
-    TaskInterface& m_inputTask;
-    TaskInterface& m_soundTask;
-    TaskInterface& m_stateTask;
-    TaskInterface& m_videoTask;
+    TaskIF& m_inputTask;
+    TaskIF& m_soundTask;
+    TaskIF& m_stateTask;
+    TaskIF& m_videoTask;
 };
 
 } // namespace core

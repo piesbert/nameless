@@ -20,27 +20,27 @@
 #ifndef HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
 #define HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
 
-#include "engine/core/taskinterface.hpp"
+#include "engine/core/taskif.hpp"
 
-#include "engine/core/taskobserverinterface.hpp"
+#include "engine/core/taskobserverif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Task: public TaskInterface {
+class Task: public TaskIF {
 public:
     Task();
     virtual ~Task();
 
-    virtual void attach(TaskObserverInterface* taskObserver);
+    virtual void attach(TaskObserverIF* taskObserver);
     virtual void run() const;
 
     Task(const Task&) = delete;
     Task& operator=(const Task&) = delete;
 
 private:
-    TaskObserverInterface* m_taskObserver;
+    TaskObserverIF* m_taskObserver;
 };
 
 } // namespace core

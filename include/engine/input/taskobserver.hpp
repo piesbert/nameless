@@ -20,21 +20,26 @@
 #ifndef HE440E6BA_2B61_4257_ADA2_2D5BB2F84992
 #define HE440E6BA_2B61_4257_ADA2_2D5BB2F84992
 
-#include "engine/core/taskobserverinterface.hpp"
+#include "engine/core/taskobserverif.hpp"
+
+#include "engine/input/sdlinputif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class TaskObserver: public core::TaskObserverInterface {
+class TaskObserver: public core::TaskObserverIF {
 public:
-    TaskObserver();
+    TaskObserver(SdlInputIF& sdlInput);
     virtual ~TaskObserver();
 
     virtual void update() override;
 
     TaskObserver(const TaskObserver&) = delete;
     TaskObserver& operator=(const TaskObserver&) = delete;
+
+private:
+    SdlInputIF& m_sdlInput;
 };
 
 } // namespace input

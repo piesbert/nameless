@@ -1,4 +1,4 @@
-/* File:    taskobserverinterface.hpp
+/* File:    signalif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H23EAE505_7634_46A1_BE97_17D0EFE3AE61
-#define H23EAE505_7634_46A1_BE97_17D0EFE3AE61
+#ifndef HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
+#define HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class TaskObserverInterface {
+class SignalIF {
 public:
-    virtual ~TaskObserverInterface() {};
+    virtual ~SignalIF() {};
 
-    virtual void update() = 0;
+    virtual void kill() const = 0;
 };
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H23EAE505_7634_46A1_BE97_17D0EFE3AE61
+#endif // HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2

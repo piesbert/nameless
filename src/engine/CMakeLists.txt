@@ -30,6 +30,7 @@ set(LOG_SOURCES
 
 set(INPUT_SOURCES
     ./input/module.cpp
+    ./input/sdlinput.cpp
     ./input/taskobserver.cpp
     )
         

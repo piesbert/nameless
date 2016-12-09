@@ -20,9 +20,9 @@
 #ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
 #define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
 
-#include "engine/core/mediainterface.hpp"
+#include "engine/core/mediaif.hpp"
 
-#define GLEW_STATIC
+//#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -33,7 +33,7 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-class Media: public MediaInterface {
+class Media: public MediaIF {
 public:
     Media();
     virtual ~Media();

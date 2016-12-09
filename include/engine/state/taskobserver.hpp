@@ -20,13 +20,13 @@
 #ifndef H574C77BC_1CDC_485C_AF86_C60EA566C246
 #define H574C77BC_1CDC_485C_AF86_C60EA566C246
 
-#include "engine/core/taskobserverinterface.hpp"
+#include "engine/core/taskobserverif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace state {
 
-class TaskObserver: public core::TaskObserverInterface {
+class TaskObserver: public core::TaskObserverIF {
 public:
     TaskObserver();
     virtual ~TaskObserver();

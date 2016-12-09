@@ -20,12 +20,13 @@
 #include "engine/core/signal.hpp"
 
 #include "engine/core/kernel.hpp"
+#include "engine/log/log.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-Signal::Signal(KernelInterface& kernel)
+Signal::Signal(KernelIF& kernel)
 : m_kernel {kernel} {
 }
 
@@ -33,6 +34,7 @@ Signal::~Signal() {
 }
 
 void Signal::kill() const {
+    LOGINF("Signal: KILL");
     m_kernel.kill();
 }
 

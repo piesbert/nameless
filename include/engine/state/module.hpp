@@ -20,9 +20,9 @@
 #ifndef HDA815111_4A64_4F96_965B_09F15634D6EC
 #define HDA815111_4A64_4F96_965B_09F15634D6EC
 
-#include "engine/core/moduleinterface.hpp"
+#include "engine/core/moduleif.hpp"
 
-#include "engine/core/signalinterface.hpp"
+#include "engine/core/signalif.hpp"
 
 #include <memory>
 
@@ -30,21 +30,21 @@ namespace nameless {
 namespace engine {
 namespace state {
 
-class Module: public core::ModuleInterface {
+class Module: public core::ModuleIF {
 public:
-    Module(core::SignalInterface& signal);
+    Module(core::SignalIF& signal);
     virtual ~Module();
 
     virtual void build() override;
-    virtual core::TaskObserverInterface* getObserver() const override;
+    virtual core::TaskObserverIF* getObserver() const override;
 
     Module(const Module&) = delete;
     Module& operator=(const Module&) = delete;
 
 private:
-    core::SignalInterface& m_signal;
+    core::SignalIF& m_signal;
 
-    std::unique_ptr<core::TaskObserverInterface> m_taskObserver;
+    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
 };
 
 } // namespace state

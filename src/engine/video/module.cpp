@@ -25,7 +25,7 @@ namespace nameless {
 namespace engine {
 namespace video {
 
-Module::Module(core::SignalInterface& signal)
+Module::Module(core::SignalIF& signal)
 : m_signal {signal} {
 }
 
@@ -36,7 +36,7 @@ void Module::build() {
     m_taskObserver = std::make_unique<TaskObserver>();
 }
 
-core::TaskObserverInterface* Module::getObserver() const {
+core::TaskObserverIF* Module::getObserver() const {
     return m_taskObserver.get();
 }
 

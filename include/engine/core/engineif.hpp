@@ -1,4 +1,4 @@
-/* File:    taskinterface.hpp
+/* File:    engineif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,25 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H4C9483F6_59B4_488D_85ED_7D0AABD6416B
-#define H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#ifndef H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#define H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class TaskObserverInterface;
-
-class TaskInterface {
+class EngineIF {
 public:
-    virtual ~TaskInterface() {};
+    virtual ~EngineIF() {};
 
-    virtual void attach(TaskObserverInterface* taskObserver) = 0;
-    virtual void run() const = 0;
+    virtual bool start() = 0;
 };
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#endif // H3015AC03_D8D2_4406_9F6A_BDEB46404EE5

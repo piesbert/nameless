@@ -33,6 +33,7 @@ Media::Media()
 
 Media::~Media() {
     if (m_glContext) {
+        LOGINF("Removing OpenGL context");
         SDL_GL_DeleteContext(m_glContext);
     }
 
@@ -54,6 +55,7 @@ bool Media::init() {
         if (m_window != nullptr) {
             LOGINF("Creating OpenGL context.");
             m_glContext = SDL_GL_CreateContext(m_window);
+            SDL_GL_MakeCurrent(m_window, m_glContext);
         }
     }
 
@@ -65,6 +67,10 @@ bool Media::init() {
         glewExperimental = GL_TRUE;
         glewInit();
     }
+
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    SDL_GL_SwapWindow(m_window);
 
     return retval;
 }

@@ -1,4 +1,4 @@
-/* File:    engineinterface.hpp
+/* File:    mediaif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
-#define H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#ifndef H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#define H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class EngineInterface {
+class MediaIF {
 public:
-    virtual ~EngineInterface() {};
+    virtual ~MediaIF() {};
 
-    virtual bool start() = 0;
+    virtual bool init() = 0;
 };
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#endif // H2E3CDD9E_F7A7_4134_BB44_38621450DD3F

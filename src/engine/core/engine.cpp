@@ -36,9 +36,11 @@ namespace engine {
 namespace core {
 
 Engine::Engine() {
+    LOGINF("Start your engine!");
 }
 
 Engine::~Engine() {
+    LOGINF("Slowing down...");
 }
 
 bool Engine::start() {

@@ -1,4 +1,4 @@
-/* File:    task.cpp
+/* File:    taskobserverif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,29 +17,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/core/task.hpp"
+#ifndef H23EAE505_7634_46A1_BE97_17D0EFE3AE61
+#define H23EAE505_7634_46A1_BE97_17D0EFE3AE61
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-Task::Task()
-: m_taskObserver {nullptr} {
-}
+class TaskObserverIF {
+public:
+    virtual ~TaskObserverIF() {};
 
-Task::~Task() {
-}
-
-void Task::attach(TaskObserverIF* taskObserver) {
-    m_taskObserver = taskObserver;
-}
-
-void Task::run() const {
-    if (m_taskObserver != nullptr) {
-        m_taskObserver->update();
-    }
-}
+    virtual void update() = 0;
+};
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
+
+#endif // H23EAE505_7634_46A1_BE97_17D0EFE3AE61
