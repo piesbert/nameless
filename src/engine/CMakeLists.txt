@@ -20,6 +20,8 @@ set(CORE_SOURCES
     ./core/engine.cpp
     ./core/kernel.cpp
     ./core/media.cpp
+    ./core/opengl.cpp
+    ./core/sdl.cpp
     ./core/signal.cpp
     ./core/task.cpp
     )

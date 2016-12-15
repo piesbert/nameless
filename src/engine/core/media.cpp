@@ -19,6 +19,8 @@
 
 #include "engine/core/media.hpp"
 
+#include "engine/core/sdl.hpp"
+#include "engine/core/opengl.hpp"
 #include "engine/log/log.hpp"
 #include "version.hpp"
 
@@ -33,18 +35,18 @@ Media::Media()
 
 Media::~Media() {
     if (m_glContext) {
-        LOGINF("Removing OpenGL context");
-        SDL_GL_DeleteContext(m_glContext);
+        LOGINF("Removing OpenGL context.");
+        Sdl::call().SDL_GL_DeleteContext(m_glContext);
     }
 
-    SDL_Quit();
+    Sdl::call().SDL_Quit();
 }
 
 bool Media::init() {
     bool retval {true};
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-        LOGERR(SDL_GetError());
+    if (Sdl::call().SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+        LOGERR(Sdl::call().SDL_GetError());
         retval = false;
     }
 
@@ -54,36 +56,36 @@ bool Media::init() {
 
         if (m_window != nullptr) {
             LOGINF("Creating OpenGL context.");
-            m_glContext = SDL_GL_CreateContext(m_window);
-            SDL_GL_MakeCurrent(m_window, m_glContext);
+            m_glContext = Sdl::call().SDL_GL_CreateContext(m_window);
+            Sdl::call().SDL_GL_MakeCurrent(m_window, m_glContext);
         }
     }
 
     if (m_glContext == 0) {
-        LOGERR(SDL_GetError());
+        LOGERR(Sdl::call().SDL_GetError());
         retval = false;
     }
     else {
         glewExperimental = GL_TRUE;
-        glewInit();
+        OpenGl::call().glewInit();
 
-        glClearColor(0.0, 0.0, 0.0, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
-        SDL_GL_SwapWindow(m_window);
+        OpenGl::call().glClearColor(0.0, 0.0, 0.0, 1.0);
+        OpenGl::call().glClear(GL_COLOR_BUFFER_BIT);
+        Sdl::call().SDL_GL_SwapWindow(m_window);
     }
 
     return retval;
 }
 
 void Media::setGlAttributes() const {
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+    Sdl::call().SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    Sdl::call().SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    Sdl::call().SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+    Sdl::call().SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 }
 
 void Media::createWindow() {
-    m_window = SDL_CreateWindow(
+    m_window = Sdl::call().SDL_CreateWindow(
             nameless::Version::getName().c_str(),
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,

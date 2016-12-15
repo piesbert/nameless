@@ -1,4 +1,4 @@
-/* File:    media.hpp
+/* File:    sdlif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,38 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
-#define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#ifndef HB346FAC5_25BF_451E_AD9D_68F5B836036D
+#define HB346FAC5_25BF_451E_AD9D_68F5B836036D
 
-#include "engine/core/mediaif.hpp"
-
-#include "engine/core/sdlif.hpp"
-#include "engine/core/openglif.hpp"
+#include <SDL.h>
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Media: public MediaIF {
+class SdlIF {
 public:
-    Media();
-    virtual ~Media();
+    virtual ~SdlIF() {};
 
-    virtual bool init() override;
+    virtual int SDL_Init(Uint32 flags) const = 0;
+    virtual void SDL_Quit() const = 0;
 
-    Media(const Media&) = delete;
-    Media& operator=(const Media&) = delete;
-    
-private:
-    SDL_Window *m_window;
-    SDL_GLContext m_glContext;
+    virtual const char* SDL_GetError() const = 0;
+    virtual SDL_Window* SDL_CreateWindow(const char* title, int x, int y, int w, int h, Uint32 flags) const = 0;
 
-    void setGlAttributes() const;
-    void createWindow();
+    virtual int SDL_GL_SetAttribute(SDL_GLattr attr, int value) const = 0;
+    virtual SDL_GLContext SDL_GL_CreateContext(SDL_Window* window) const = 0;
+    virtual int SDL_GL_MakeCurrent(SDL_Window* window, SDL_GLContext context) const = 0;
+    virtual void SDL_GL_DeleteContext(SDL_GLContext context) const = 0;
+    virtual void SDL_GL_SwapWindow(SDL_Window* window) const = 0;
 };
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#endif // HB346FAC5_25BF_451E_AD9D_68F5B836036D

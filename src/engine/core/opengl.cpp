@@ -1,4 +1,4 @@
-/* File:    media.hpp
+/* File:    opengl.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,38 +17,38 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
-#define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#include "engine/core/opengl.hpp"
 
-#include "engine/core/mediaif.hpp"
-
-#include "engine/core/sdlif.hpp"
-#include "engine/core/openglif.hpp"
+#define GLEW_STATIC                                                             
+#include <GL/glew.h>                                                            
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Media: public MediaIF {
-public:
-    Media();
-    virtual ~Media();
+OpenGl::OpenGl() {
+}
 
-    virtual bool init() override;
+OpenGl::~OpenGl() {
+}
 
-    Media(const Media&) = delete;
-    Media& operator=(const Media&) = delete;
-    
-private:
-    SDL_Window *m_window;
-    SDL_GLContext m_glContext;
+OpenGlIF& OpenGl::call() {
+    static OpenGl openGlInstance;
+    return openGlInstance;
+}
 
-    void setGlAttributes() const;
-    void createWindow();
-};
+inline GLenum OpenGl::glewInit() const {
+    return ::glewInit();
+}
+
+inline void OpenGl::glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) const {
+    ::glClearColor(red, green, blue, alpha);
+}
+
+inline void OpenGl::glClear(GLbitfield mask) const {
+    ::glClear(mask);
+}
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
-
-#endif // H57EE9E60_7546_4F85_9C99_9B7E010B1F4B

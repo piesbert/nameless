@@ -1,4 +1,4 @@
-/* File:    media.hpp
+/* File:    opengl.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,38 +17,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
-#define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#ifndef HEBEDD1AA_BB63_41E0_BFDB_2B6280748EA0
+#define HEBEDD1AA_BB63_41E0_BFDB_2B6280748EA0
 
-#include "engine/core/mediaif.hpp"
-
-#include "engine/core/sdlif.hpp"
 #include "engine/core/openglif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Media: public MediaIF {
+class OpenGl: public OpenGlIF {
 public:
-    Media();
-    virtual ~Media();
+    OpenGl();
+    virtual ~OpenGl();
 
-    virtual bool init() override;
+    static OpenGlIF& call();
 
-    Media(const Media&) = delete;
-    Media& operator=(const Media&) = delete;
-    
-private:
-    SDL_Window *m_window;
-    SDL_GLContext m_glContext;
+    inline virtual GLenum glewInit() const override final;
+    inline virtual void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) const override final;
+    inline virtual void glClear(GLbitfield mask) const override final;
 
-    void setGlAttributes() const;
-    void createWindow();
+    OpenGl(const OpenGl&) = delete;
+    OpenGl& operator=(const OpenGl&) = delete;
 };
 
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
+#endif // HEBEDD1AA_BB63_41E0_BFDB_2B6280748EA0
