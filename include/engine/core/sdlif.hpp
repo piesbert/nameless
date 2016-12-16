@@ -36,6 +36,8 @@ public:
     virtual const char* SDL_GetError() const = 0;
     virtual SDL_Window* SDL_CreateWindow(const char* title, int x, int y, int w, int h, Uint32 flags) const = 0;
 
+    virtual int SDL_PollEvent(SDL_Event* event) const = 0;
+
     virtual int SDL_GL_SetAttribute(SDL_GLattr attr, int value) const = 0;
     virtual SDL_GLContext SDL_GL_CreateContext(SDL_Window* window) const = 0;
     virtual int SDL_GL_MakeCurrent(SDL_Window* window, SDL_GLContext context) const = 0;

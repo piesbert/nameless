@@ -50,6 +50,10 @@ inline SDL_Window* Sdl::SDL_CreateWindow(const char* title, int x, int y, int w,
     return ::SDL_CreateWindow(title, x, y, w, h, flags);
 }
 
+inline int Sdl::SDL_PollEvent(SDL_Event* event) const {
+    return ::SDL_PollEvent(event);
+}
+
 inline int Sdl::SDL_GL_SetAttribute(SDL_GLattr attr, int value) const {
     return ::SDL_GL_SetAttribute(attr, value);
 }

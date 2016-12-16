@@ -19,6 +19,7 @@
 
 #include "engine/input/sdlinput.hpp"
 
+#include "engine/core/sdl.hpp"
 #include "engine/log/log.hpp"
 
 namespace nameless {
@@ -35,7 +36,7 @@ SdlInput::~SdlInput() {
 int SdlInput::handleEvents() {
     int eventCnt {0};
 
-    while(SDL_PollEvent(&m_event)) {
+    while(core::Sdl::call().SDL_PollEvent(&m_event)) {
         eventCnt++;
 
         if (m_event.type == SDL_QUIT) {
