@@ -19,6 +19,7 @@
 
 #include "engine/input/module.hpp"
 
+#include "engine/input/commander.hpp"
 #include "engine/input/sdlinput.hpp"
 #include "engine/input/taskobserver.hpp"
 
@@ -34,7 +35,8 @@ Module::~Module() {
 }
 
 void Module::build() {
-    m_sdlInput = std::make_unique<SdlInput>(m_signal);
+    m_commander = std::make_unique<Commander>();
+    m_sdlInput = std::make_unique<SdlInput>(m_signal, *m_commander);
     m_taskObserver = std::make_unique<TaskObserver>(*m_sdlInput);
 }
 

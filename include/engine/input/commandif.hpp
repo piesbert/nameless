@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    commandif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,42 +17,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-#define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-
-#include "engine/core/moduleif.hpp"
-
-#include "engine/input/commanderif.hpp"
-#include "engine/input/sdlinputif.hpp"
-#include "engine/core/signalif.hpp"
-
-#include <memory>
+#ifndef HCA116080_F71C_48D5_B74F_A7B6BC26ABB1
+#define HCA116080_F71C_48D5_B74F_A7B6BC26ABB1
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class Module: public core::ModuleIF {
+class CommandIF {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    virtual ~CommandIF() {};
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    enum State {
+        START = 0,
+        STOP
+    };
 
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
+    virtual void execute(State state) = 0;
 
-private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
-    std::unique_ptr<SdlInputIF> m_sdlInput;
-    std::unique_ptr<CommanderIF> m_commander;
+    CommandIF(const CommandIF&) = delete;
+    CommandIF& operator=(const CommandIF&) = delete;
 };
 
 } // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#endif // HCA116080_F71C_48D5_B74F_A7B6BC26ABB1

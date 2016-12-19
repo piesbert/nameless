@@ -22,9 +22,12 @@
 
 #include "engine/input/sdlinputif.hpp"
 
+#include "engine/input/commanderif.hpp"
 #include "engine/core/signalif.hpp"
 
 #include <SDL.h>
+
+#define MOUSE_BUTTONS 9
 
 namespace nameless {
 namespace engine {
@@ -32,17 +35,25 @@ namespace input {
 
 class SdlInput: public SdlInputIF {
 public:
-    SdlInput(core::SignalIF& signal);
+    SdlInput(core::SignalIF& signal, CommanderIF& commander);
     virtual ~SdlInput();
 
     virtual int handleEvents() override;
+
+    virtual Button attachCommand(CommandIF* command, Button button) override;
+    virtual Button attachCommand(CommandIF* command) override;
 
     SdlInput(const SdlInput&) = delete;
     SdlInput& operator=(const SdlInput&) = delete;
 
 private:
     core::SignalIF& m_signal;
+    CommanderIF& m_commander;
     SDL_Event m_event;
+
+    Button m_trTable[SDL_NUM_SCANCODES + MOUSE_BUTTONS];
+
+    void handleButton();
 };
 
 } // namespace input

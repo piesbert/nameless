@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    commander.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,42 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-#define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-
-#include "engine/core/moduleif.hpp"
+#ifndef H15F12A9D_FFE3_4D19_B8DE_CE21518A235C
+#define H15F12A9D_FFE3_4D19_B8DE_CE21518A235C
 
 #include "engine/input/commanderif.hpp"
-#include "engine/input/sdlinputif.hpp"
-#include "engine/core/signalif.hpp"
 
-#include <memory>
+#include <array>
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class Module: public core::ModuleIF {
+class Commander: public CommanderIF {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    Commander();
+    virtual ~Commander();
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual void execute(SdlInputIF::Button button, CommandIF::State state) const override;
+    virtual void attach(CommandIF* command, SdlInputIF::Button button) override;
 
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
+    Commander(const Commander&) = delete;
+    Commander& operator=(const Commander&) = delete;
 
 private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
-    std::unique_ptr<SdlInputIF> m_sdlInput;
-    std::unique_ptr<CommanderIF> m_commander;
+    std::array<CommandIF*, SdlInputIF::BUTTON_MAX> m_command;
 };
 
 } // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#endif // H15F12A9D_FFE3_4D19_B8DE_CE21518A235C

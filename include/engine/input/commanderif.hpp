@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    commanderif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,42 +17,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-#define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#ifndef H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
+#define H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
 
-#include "engine/core/moduleif.hpp"
-
-#include "engine/input/commanderif.hpp"
 #include "engine/input/sdlinputif.hpp"
-#include "engine/core/signalif.hpp"
 
-#include <memory>
+#include "engine/input/commandif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class Module: public core::ModuleIF {
+class CommanderIF {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    virtual ~CommanderIF() {};
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
-
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
-
-private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
-    std::unique_ptr<SdlInputIF> m_sdlInput;
-    std::unique_ptr<CommanderIF> m_commander;
+    virtual void execute(SdlInputIF::Button button, CommandIF::State state) const = 0;
+    virtual void attach(CommandIF* command, SdlInputIF::Button button) = 0;
 };
 
 } // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#endif // H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
