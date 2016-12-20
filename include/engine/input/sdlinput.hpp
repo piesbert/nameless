@@ -53,7 +53,8 @@ private:
 
     Button m_trTable[SDL_NUM_SCANCODES + MOUSE_BUTTONS];
 
-    void handleButton();
+    void handleKey(CommandIF::State state);
+    void handleButton(CommandIF::State state);
 };
 
 } // namespace input

@@ -299,13 +299,17 @@ int SdlInput::handleEvents() {
                 break;
             case SDL_KEYDOWN: // not interested in repeated events
                 if (m_event.key.repeat == 0) {
-                    handleButton();
+                    handleKey(CommandIF::START);
                 }
                 break;
             case SDL_KEYUP:
+                handleKey(CommandIF::STOP);
+                break;
             case SDL_MOUSEBUTTONDOWN:
+                handleButton(CommandIF::START);
+                break;
             case SDL_MOUSEBUTTONUP:
-                handleButton();
+                handleButton(CommandIF::STOP);
                 break;
         }
     }
@@ -324,29 +328,17 @@ SdlInput::Button SdlInput::attachCommand(CommandIF* command) {
     return SdlInput::KEY_UNKNOWN;
 }
 
-void SdlInput::handleButton() {
-    CommandIF::State state {CommandIF::STOP};
+void SdlInput::handleKey(CommandIF::State state) {
+    Button button {KEY_UNKNOWN};
+    
+    button = m_trTable[m_event.key.keysym.scancode];
+    m_commander.execute(button, state);
+}
+
+void SdlInput::handleButton(CommandIF::State state) {
     Button button {KEY_UNKNOWN};
 
-    switch (m_event.type) {
-        case SDL_KEYUP:
-            button = m_trTable[m_event.key.keysym.scancode];
-            break;
-        case SDL_KEYDOWN:
-            state = CommandIF::START;
-            button = m_trTable[m_event.key.keysym.scancode];
-            break;
-        case SDL_MOUSEBUTTONUP:
-            button = m_trTable[SDL_NUM_SCANCODES + m_event.button.button];
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            state = CommandIF::START;
-            button = m_trTable[SDL_NUM_SCANCODES + m_event.button.button];
-            break;
-        default:
-            break;
-    }
-
+    button = m_trTable[SDL_NUM_SCANCODES + m_event.button.button];
     m_commander.execute(button, state);
 }
 
