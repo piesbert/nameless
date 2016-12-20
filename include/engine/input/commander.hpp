@@ -33,14 +33,14 @@ public:
     Commander();
     virtual ~Commander();
 
-    virtual void execute(SdlInputIF::Button button, CommandIF::State state) const override;
-    virtual void attach(CommandIF* command, SdlInputIF::Button button) override;
+    virtual void execute(api::Input::Button button, api::Command::Message message) const override;
+    virtual void attach(api::Command* command, api::Input::Button button) override;
 
     Commander(const Commander&) = delete;
     Commander& operator=(const Commander&) = delete;
 
 private:
-    std::array<CommandIF*, SdlInputIF::BUTTON_MAX> m_command;
+    std::array<api::Command*, api::Input::BUTTON_MAX> m_command;
 };
 
 } // namespace input

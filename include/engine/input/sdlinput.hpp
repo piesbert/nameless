@@ -40,8 +40,8 @@ public:
 
     virtual int handleEvents() override;
 
-    virtual Button attachCommand(CommandIF* command, Button button) override;
-    virtual Button attachCommand(CommandIF* command) override;
+    virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) override;
+    virtual api::Input::Button attachCommand(api::Command* command) override;
 
     SdlInput(const SdlInput&) = delete;
     SdlInput& operator=(const SdlInput&) = delete;
@@ -51,10 +51,10 @@ private:
     CommanderIF& m_commander;
     SDL_Event m_event;
 
-    Button m_trTable[SDL_NUM_SCANCODES + MOUSE_BUTTONS];
+    api::Input::Button m_trTable[SDL_NUM_SCANCODES + MOUSE_BUTTONS];
 
-    void handleKey(CommandIF::State state);
-    void handleButton(CommandIF::State state);
+    void handleKey(api::Command::Message message);
+    void handleButton(api::Command::Message message);
 };
 
 } // namespace input

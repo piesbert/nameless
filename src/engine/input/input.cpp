@@ -1,4 +1,4 @@
-/* File:    commandif.hpp
+/* File:    input.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,30 +17,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HCA116080_F71C_48D5_B74F_A7B6BC26ABB1
-#define HCA116080_F71C_48D5_B74F_A7B6BC26ABB1
+#include "engine/input/input.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class CommandIF {
-public:
-    virtual ~CommandIF() {};
+Input::Input(input::SdlInputIF& sdlInput)
+: m_sdlInput {sdlInput} {
+}
 
-    enum State {
-        START = 0,
-        STOP
-    };
+Input::~Input() {
+}
 
-    virtual void execute(State state) = 0;
+api::Input::Button Input::attachCommand(api::Command* command, api::Input::Button button) const {
+    return m_sdlInput.attachCommand(command, button);
+}
 
-    CommandIF(const CommandIF&) = delete;
-    CommandIF& operator=(const CommandIF&) = delete;
-};
+api::Input::Button Input::attachCommand(api::Command* command) const {
+    return m_sdlInput.attachCommand(command);
+}
 
 } // namespace input
 } // namespace engine
 } // namespace nameless
-
-#endif // HCA116080_F71C_48D5_B74F_A7B6BC26ABB1

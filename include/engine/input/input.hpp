@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    input.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,45 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
-#define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#ifndef H83F1A5A4_AE16_4891_87FD_74DCFDB72AC3
+#define H83F1A5A4_AE16_4891_87FD_74DCFDB72AC3
 
-#include "engine/core/moduleif.hpp"
-
-#include "engine/input/commanderif.hpp"
-#include "engine/input/sdlinputif.hpp"
 #include "engine/api/input.hpp"
-#include "engine/core/signalif.hpp"
-
-#include <memory>
+#include "engine/api/command.hpp"
+#include "engine/input/sdlinputif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-class Module: public core::ModuleIF {
+class Input: public api::Input {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    Input(SdlInputIF& sdlInput);
+    virtual ~Input();
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) const override;
+    virtual api::Input::Button attachCommand(api::Command* command) const override;
 
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
+    Input(const Input&) = delete;
+    Input& operator=(const Input&) = delete;
 
 private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
-    std::unique_ptr<SdlInputIF> m_sdlInput;
-    std::unique_ptr<CommanderIF> m_commander;
-    std::unique_ptr<api::Input> m_input;
-
+    SdlInputIF& m_sdlInput;
 };
 
 } // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
+#endif // H83F1A5A4_AE16_4891_87FD_74DCFDB72AC3

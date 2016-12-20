@@ -22,6 +22,7 @@
 #include "engine/input/commander.hpp"
 #include "engine/input/sdlinput.hpp"
 #include "engine/input/taskobserver.hpp"
+#include "engine/input/input.hpp"
 
 namespace nameless {
 namespace engine {
@@ -38,6 +39,7 @@ void Module::build() {
     m_commander = std::make_unique<Commander>();
     m_sdlInput = std::make_unique<SdlInput>(m_signal, *m_commander);
     m_taskObserver = std::make_unique<TaskObserver>(*m_sdlInput);
+    m_input = std::make_unique<Input>(*m_sdlInput);
 }
 
 core::TaskObserverIF* Module::getObserver() const {

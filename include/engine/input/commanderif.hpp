@@ -20,9 +20,8 @@
 #ifndef H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
 #define H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
 
-#include "engine/input/sdlinputif.hpp"
-
-#include "engine/input/commandif.hpp"
+#include "engine/api/input.hpp"
+#include "engine/api/command.hpp"
 
 namespace nameless {
 namespace engine {
@@ -32,8 +31,8 @@ class CommanderIF {
 public:
     virtual ~CommanderIF() {};
 
-    virtual void execute(SdlInputIF::Button button, CommandIF::State state) const = 0;
-    virtual void attach(CommandIF* command, SdlInputIF::Button button) = 0;
+    virtual void execute(api::Input::Button button, api::Command::Message message) const = 0;
+    virtual void attach(api::Command* command, api::Input::Button button) = 0;
 };
 
 } // namespace input

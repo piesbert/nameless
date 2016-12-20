@@ -26,7 +26,7 @@ namespace engine {
 namespace input {
 
 Commander::Commander() {
-    for (int i = 0; i < SdlInputIF::BUTTON_MAX; i++) {
+    for (int i = 0; i < api::Input::BUTTON_MAX; i++) {
         m_command[i] = nullptr;
     }
 }
@@ -34,16 +34,16 @@ Commander::Commander() {
 Commander::~Commander() {
 }
 
-void Commander::execute(SdlInputIF::Button button, CommandIF::State state) const {
+void Commander::execute(api::Input::Button button, api::Command::Message message) const {
     if (m_command[button] != nullptr) {
-        m_command[button]->execute(state);
+        m_command[button]->execute(message);
     }
 
-    LOGINF("BUTTON: " << (int)button << ", " << (int)state);
+    LOGINF("BUTTON: " << (int)button << ", " << (int)message);
 }
 
-void Commander::attach(CommandIF* command, SdlInputIF::Button button) {
-    for (int i = 0; i < SdlInputIF::BUTTON_MAX; i++) {
+void Commander::attach(api::Command* command, api::Input::Button button) {
+    for (int i = 0; i < api::Input::BUTTON_MAX; i++) {
         if (m_command[i] == command) {
             m_command[i] = nullptr;
         }

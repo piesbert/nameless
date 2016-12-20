@@ -1,4 +1,4 @@
-/* File:    sdlinputif.hpp
+/* File:    command.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,28 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HB145BE7E_B032_4C23_8B5F_3318D17F7480
-#define HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#ifndef H34E73453_FFDB_4531_851F_5F9ABDBC4C4F
+#define H34E73453_FFDB_4531_851F_5F9ABDBC4C4F
 
-#include "engine/api/command.hpp"
-#include "engine/api/input.hpp"
+#include <string>
 
 namespace nameless {
 namespace engine {
-namespace input {
+namespace api {
 
-class SdlInputIF {
+class Command {
 public:
-    virtual ~SdlInputIF() {};
+    virtual ~Command() {};
 
-    virtual int handleEvents() = 0;
+    enum Message: int;
 
-    virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) = 0;
-    virtual api::Input::Button attachCommand(api::Command* command) = 0;
+    virtual void execute(Message message) = 0;
+
+    virtual void setName(const std::string& name) = 0;
+    virtual const std::string& getName() = 0;
+
+    enum Message: int {
+        PRESSED,
+        RELEASED
+    };
 };
 
-} // namespace input
+} // namespace api
 } // namespace engine
 } // namespace nameless
 
-#endif // HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#endif // H34E73453_FFDB_4531_851F_5F9ABDBC4C4F

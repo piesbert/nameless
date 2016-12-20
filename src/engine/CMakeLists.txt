@@ -16,6 +16,9 @@
 
 set(ENGINE_NAME engine)
 
+set(API_SOURCES
+    )
+
 set(CORE_SOURCES
     ./core/engine.cpp
     ./core/kernel.cpp
@@ -32,6 +35,7 @@ set(LOG_SOURCES
 
 set(INPUT_SOURCES
     ./input/commander.cpp
+    ./input/input.cpp
     ./input/module.cpp
     ./input/sdlinput.cpp
     ./input/taskobserver.cpp
@@ -54,6 +58,7 @@ set(VIDEO_SOURCES
 
 add_library(
     ${ENGINE_NAME}
+    ${API_SOURCES}
     ${CORE_SOURCES}
     ${INPUT_SOURCES}
     ${LOG_SOURCES}
