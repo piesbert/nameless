@@ -23,11 +23,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-using ::testing::_;
-
 TEST(Signal, KillSignal) {
-    nameless::test::engine::core::mock::Kernel mockKernel;
-    nameless::engine::core::Signal signal(mockKernel);
+    ::nameless::test::engine::core::mock::Kernel mockKernel;
+    ::nameless::engine::core::Signal signal(mockKernel);
 
     EXPECT_CALL(mockKernel, kill()).Times(1); 
     signal.kill();
