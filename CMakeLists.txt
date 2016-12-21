@@ -19,6 +19,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 project(nameless)
 
+set(ENGINE_LIB_NAME engine)
+set(GAME_LIB_NAME game)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib) 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -40,6 +43,8 @@ enable_testing()
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
     "${PROJECT_BINARY_DIR}/include"
+    "${PROJECT_SOURCE_DIR}/test"
+    "${PROJECT_BINARY_DIR}/test"
     "${SDL2_INCLUDE_DIR}"
     "${GLEW_INCLUDE_DIRS}"
     )
@@ -49,3 +54,7 @@ message(${GLEW_INCLUDE_DIRS})
 #add_subdirectory("doc")
 add_subdirectory(include)
 add_subdirectory(src)
+add_subdirectory(test)
+
+add_test(nameless_engine bin/nameless_engine_test)
+add_test(nameless_game bin/nameless_game_test)

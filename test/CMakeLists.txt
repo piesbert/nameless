@@ -13,23 +13,13 @@
 #                                                                               
 # You should have received a copy of the GNU General Public License             
 # along with this program.  If not, see <http://www.gnu.org/licenses/>          
-                         
-set(APP_NAME nameless)
-set(APP_SOURCES main.cpp)
 
-set(CORE_SOURCES
-    ./core/game.cpp
+add_subdirectory(lib/googletest)
+
+include_directories(
+    ${gmock_SOURCE_DIR}/include
+    ${gtest_SOURCE_DIR}/include
     )
 
-add_library(
-    ${GAME_LIB_NAME}
-    ${CORE_SOURCES}
-    )
-
-set(APP_LIBS
-    ${ENGINE_LIB_NAME}
-    ${GAME_LIB_NAME}
-    )
-
-add_executable(${APP_NAME} ${APP_SOURCES})
-target_link_libraries(${APP_NAME} ${APP_LIBS} ${SDL2_LIBRARY} ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES})
+add_subdirectory(engine)
+add_subdirectory(game)

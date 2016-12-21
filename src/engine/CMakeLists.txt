@@ -14,8 +14,6 @@
 # You should have received a copy of the GNU General Public License             
 # along with this program.  If not, see <http://www.gnu.org/licenses/>          
 
-set(ENGINE_NAME engine)
-
 set(API_SOURCES
     )
 
@@ -57,7 +55,7 @@ set(VIDEO_SOURCES
     )
 
 add_library(
-    ${ENGINE_NAME}
+    ${ENGINE_LIB_NAME}
     ${API_SOURCES}
     ${CORE_SOURCES}
     ${INPUT_SOURCES}
