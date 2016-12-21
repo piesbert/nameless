@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    gameif.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,40 +17,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
-#define HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
+#ifndef H745FAE1F_9B8D_4E90_92D4_CFCD01A57402
+#define H745FAE1F_9B8D_4E90_92D4_CFCD01A57402
 
-#include "engine/core/moduleif.hpp"
-
-#include "engine/core/signalif.hpp"
-
-#include <memory>
+#include "engine/api/input.hpp"
 
 namespace nameless {
 namespace engine {
-namespace sound {
+namespace api {
 
-class Module: public core::ModuleIF {
+class Game {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    virtual ~Game() {};
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual bool onStart() = 0;
+    virtual void onStop() = 0;
 
-    virtual void provideApi(api::Game& game) const override;
-
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
-
-private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
+    virtual void setInputApi(Input* input) = 0;
 };
 
-} // namespace sound
+} // namespace api
 } // namespace engine
 } // namespace nameless
 
-#endif // HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
+#endif // H745FAE1F_9B8D_4E90_92D4_CFCD01A57402

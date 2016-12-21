@@ -19,7 +19,6 @@
 
 #include "engine/core/signal.hpp"
 
-#include "engine/core/kernel.hpp"
 #include "engine/log/log.hpp"
 
 namespace nameless {

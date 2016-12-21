@@ -36,7 +36,7 @@ namespace core {
 
 class Engine: public EngineIF {
 public:
-    Engine();
+    Engine(api::Game& game);
     virtual ~Engine();
 
     virtual bool start() override;
@@ -45,6 +45,8 @@ public:
     Engine& operator=(const Engine&) = delete;
 
 private:
+    api::Game& m_game;
+
     std::unique_ptr<KernelIF> m_kernel;
     std::unique_ptr<SignalIF> m_signal;
 

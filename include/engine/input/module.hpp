@@ -41,6 +41,8 @@ public:
     virtual void build() override;
     virtual core::TaskObserverIF* getObserver() const override;
 
+    virtual void provideApi(api::Game& game) const override;
+
     Module(const Module&) = delete;
     Module& operator=(const Module&) = delete;
 

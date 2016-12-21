@@ -1,4 +1,4 @@
-/* File:    module.hpp
+/* File:    game.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,40 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
-#define HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
+#ifndef H8FECAF4D_FF7C_41C5_A308_AE4913111C61
+#define H8FECAF4D_FF7C_41C5_A308_AE4913111C61
 
-#include "engine/core/moduleif.hpp"
-
-#include "engine/core/signalif.hpp"
-
-#include <memory>
+#include "engine/api/game.hpp"
 
 namespace nameless {
-namespace engine {
-namespace sound {
+namespace game {
+namespace core {
 
-class Module: public core::ModuleIF {
+class Game: public engine::api::Game {
 public:
-    Module(core::SignalIF& signal);
-    virtual ~Module();
+    Game();
+    virtual ~Game();
 
-    virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual bool onStart() override;
+    virtual void onStop() override;
 
-    virtual void provideApi(api::Game& game) const override;
+    virtual void setInputApi(engine::api::Input* input) override;
 
-    Module(const Module&) = delete;
-    Module& operator=(const Module&) = delete;
+    Game(const Game&) = delete;
+    Game& operator=(const Game&) = delete;
 
 private:
-    core::SignalIF& m_signal;
-
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
+    engine::api::Input* m_input;
 };
 
-} // namespace sound
-} // namespace engine
+} // namespace core
+} // namespace game
 } // namespace nameless
 
-#endif // HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
+#endif // H8FECAF4D_FF7C_41C5_A308_AE4913111C61

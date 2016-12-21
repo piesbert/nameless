@@ -17,12 +17,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "game/core/game.hpp"
 #include "engine/core/engine.hpp"
 
 using namespace nameless::engine::core;
+using namespace nameless::game::core;
 
 int main(int argc, char** argv) {
-    Engine engine;
+    Game game;
+    Engine engine(game);
 
     engine.start();
 

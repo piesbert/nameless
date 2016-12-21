@@ -14,5 +14,24 @@
 # You should have received a copy of the GNU General Public License             
 # along with this program.  If not, see <http://www.gnu.org/licenses/>          
                          
-add_subdirectory(engine)
-add_subdirectory(game)
+set(APP_NAME nameless)
+set(APP_SOURCES main.cpp)
+
+set(GAME_NAME game)
+
+set(CORE_SOURCES
+    ./core/game.cpp
+    )
+
+add_library(
+    ${GAME_NAME}
+    ${CORE_SOURCES}
+    )
+
+set(APP_LIBS
+    engine
+    game
+    )
+
+add_executable(${APP_NAME} ${APP_SOURCES})
+target_link_libraries(${APP_NAME} ${APP_LIBS} ${SDL2_LIBRARY} ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES})

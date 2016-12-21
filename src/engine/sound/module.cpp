@@ -40,6 +40,9 @@ core::TaskObserverIF* Module::getObserver() const {
     return m_taskObserver.get();
 }
 
+void Module::provideApi(api::Game& game) const {
+}
+
 } // namespace sound
 } // namespace engine
 } // namespace nameless

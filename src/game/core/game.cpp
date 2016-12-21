@@ -1,4 +1,4 @@
-/* File:    module.cpp
+/* File:    game.cpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,32 +17,33 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "engine/state/module.hpp"
+#include "game/core/game.hpp"
 
-#include "engine/state/taskobserver.hpp"
+#include "engine/log/log.hpp"
 
 namespace nameless {
-namespace engine {
-namespace state {
+namespace game {
+namespace core {
 
-Module::Module(core::SignalIF& signal)
-: m_signal {signal} {
+Game::Game() {
 }
 
-Module::~Module() {
+Game::~Game() {
 }
 
-void Module::build() {
-    m_taskObserver = std::make_unique<TaskObserver>();
+bool Game::onStart() {
+    LOGINF("Game started.");
+    return true;
 }
 
-core::TaskObserverIF* Module::getObserver() const {
-    return m_taskObserver.get();
+void Game::onStop() {
+    LOGINF("Game stopped.");
 }
 
-void Module::provideApi(api::Game& game) const {
+void Game::setInputApi(engine::api::Input* input) {
+    m_input = input;
 }
 
-} // namespace state
-} // namespace engine
+} // namespace core
+} // namespace game
 } // namespace nameless

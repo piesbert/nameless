@@ -35,7 +35,8 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-Engine::Engine() {
+Engine::Engine(api::Game& game)
+: m_game {game} {
     LOGINF("Start your engine!");
 }
 
@@ -50,11 +51,13 @@ bool Engine::start() {
 
     if (m_media->init()) {
         buildKernel();
-        if (buildModules()) {
+        if (buildModules() && m_game.onStart()) {
             m_kernel->start();
             retval = true;
         }
     }
+
+    m_game.onStop();
 
     return retval;
 }
@@ -72,6 +75,7 @@ void Engine::buildKernel() {
 bool Engine::buildModules() {
     m_inputModule = std::make_unique<input::Module>(*m_signal);
     m_inputModule->build();
+    m_inputModule->provideApi(m_game);
     m_soundModule = std::make_unique<sound::Module>(*m_signal);
     m_soundModule->build();
     m_stateModule = std::make_unique<state::Module>(*m_signal);

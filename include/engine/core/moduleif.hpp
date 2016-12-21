@@ -20,6 +20,8 @@
 #ifndef H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
 #define H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
 
+#include "engine/api/game.hpp"
+
 namespace nameless {
 namespace engine {
 namespace core {
@@ -32,6 +34,8 @@ public:
 
     virtual void build() = 0;
     virtual TaskObserverIF* getObserver() const = 0;
+
+    virtual void provideApi(api::Game& game) const = 0;
 };
 
 } // namespace core

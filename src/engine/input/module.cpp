@@ -46,6 +46,10 @@ core::TaskObserverIF* Module::getObserver() const {
     return m_taskObserver.get();
 }
 
+void Module::provideApi(api::Game& game) const {
+    game.setInputApi(m_input.get());
+}
+
 } // namespace input
 } // namespace engine
 } // namespace nameless

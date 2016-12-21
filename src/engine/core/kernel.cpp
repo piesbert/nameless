@@ -19,7 +19,6 @@
 
 #include "engine/core/kernel.hpp"
 
-#include "engine/core/task.hpp"
 #include "engine/log/log.hpp"
 
 #include <chrono>
