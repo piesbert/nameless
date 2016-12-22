@@ -42,7 +42,7 @@ void Module::build() {
     m_input = std::make_unique<Input>(*m_sdlInput);
 }
 
-core::TaskObserverIF* Module::getObserver() const {
+core::interface::TaskObserver* Module::getObserver() const {
     return m_taskObserver.get();
 }
 

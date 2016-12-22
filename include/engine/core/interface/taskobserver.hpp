@@ -1,4 +1,4 @@
-/* File:    commanderif.hpp
+/* File:    interface/taskobserver.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,26 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
-#define H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
-
-#include "engine/api/input.hpp"
-#include "engine/api/command.hpp"
+#ifndef H23EAE505_7634_46A1_BE97_17D0EFE3AE61
+#define H23EAE505_7634_46A1_BE97_17D0EFE3AE61
 
 namespace nameless {
 namespace engine {
-namespace input {
+namespace core {
+namespace interface {
 
-class CommanderIF {
+class TaskObserver {
 public:
-    virtual ~CommanderIF() {};
+    virtual ~TaskObserver() {};
 
-    virtual void execute(api::Input::Button button, api::Command::Message message) const = 0;
-    virtual void attach(api::Command* command, api::Input::Button button) = 0;
+    virtual void update() = 0;
 };
 
-} // namespace input
+} // namespace interface
+} // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H2E6F2745_E303_4CB9_A365_8BCFB482CEE5
+#endif // H23EAE505_7634_46A1_BE97_17D0EFE3AE61

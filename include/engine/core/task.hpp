@@ -20,27 +20,25 @@
 #ifndef HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
 #define HC5EAACEA_0CC0_4458_ACFF_5E1881955C15
 
-#include "engine/core/taskif.hpp"
-
-#include "engine/core/taskobserverif.hpp"
+#include "engine/core/interface/task.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Task: public TaskIF {
+class Task: public interface::Task {
 public:
     Task();
     virtual ~Task();
 
-    virtual void attach(TaskObserverIF* taskObserver) override;
+    virtual void attach(interface::TaskObserver* taskObserver) override;
     virtual void run() const override;
 
     Task(const Task&) = delete;
     Task& operator=(const Task&) = delete;
 
 private:
-    TaskObserverIF* m_taskObserver;
+    interface::TaskObserver* m_taskObserver;
 };
 
 } // namespace core

@@ -26,7 +26,7 @@
 #include "engine/core/interface/media.hpp"
 #include "engine/core/interface/module.hpp"
 #include "engine/core/interface/signal.hpp"
-#include "engine/core/taskif.hpp"
+#include "engine/core/interface/task.hpp"
 
 #include <memory>
 
@@ -57,10 +57,10 @@ private:
     std::unique_ptr<interface::Module> m_stateModule;
     std::unique_ptr<interface::Module> m_videoModule;
 
-    std::unique_ptr<TaskIF> m_inputTask;
-    std::unique_ptr<TaskIF> m_soundTask;
-    std::unique_ptr<TaskIF> m_stateTask;
-    std::unique_ptr<TaskIF> m_videoTask;
+    std::unique_ptr<interface::Task> m_inputTask;
+    std::unique_ptr<interface::Task> m_soundTask;
+    std::unique_ptr<interface::Task> m_stateTask;
+    std::unique_ptr<interface::Task> m_videoTask;
 
     void buildKernel();
     bool buildModules();

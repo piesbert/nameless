@@ -21,7 +21,7 @@
 #define H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
 
 #include "engine/api/game.hpp"
-#include "engine/core/taskobserverif.hpp"
+#include "engine/core/interface/taskobserver.hpp"
 
 namespace nameless {
 namespace engine {
@@ -33,7 +33,7 @@ public:
     virtual ~Module() {};
 
     virtual void build() = 0;
-    virtual TaskObserverIF* getObserver() const = 0;
+    virtual TaskObserver* getObserver() const = 0;
 
     virtual void provideApi(api::Game& game) const = 0;
 };

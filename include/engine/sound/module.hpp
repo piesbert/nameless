@@ -36,7 +36,7 @@ public:
     virtual ~Module();
 
     virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual core::interface::TaskObserver* getObserver() const override;
 
     virtual void provideApi(api::Game& game) const override;
 
@@ -46,7 +46,7 @@ public:
 private:
     core::interface::Signal& m_signal;
 
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
+    std::unique_ptr<core::interface::TaskObserver> m_taskObserver;
 };
 
 } // namespace sound

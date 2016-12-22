@@ -1,4 +1,4 @@
-/* File:    sdlinputif.hpp
+/* File:    interface/task.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,28 +17,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HB145BE7E_B032_4C23_8B5F_3318D17F7480
-#define HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#ifndef H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#define H4C9483F6_59B4_488D_85ED_7D0AABD6416B
 
-#include "engine/api/command.hpp"
-#include "engine/api/input.hpp"
+#include "engine/core/interface/taskobserver.hpp"
 
 namespace nameless {
 namespace engine {
-namespace input {
+namespace core {
+namespace interface {
 
-class SdlInputIF {
+class Task {
 public:
-    virtual ~SdlInputIF() {};
+    virtual ~Task() {};
 
-    virtual int handleEvents() = 0;
-
-    virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) = 0;
-    virtual api::Input::Button attachCommand(api::Command* command) = 0;
+    virtual void attach(interface::TaskObserver* taskObserver) = 0;
+    virtual void run() const = 0;
 };
 
-} // namespace input
+} // namespace interface
+} // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#endif // H4C9483F6_59B4_488D_85ED_7D0AABD6416B

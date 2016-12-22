@@ -20,10 +20,10 @@
 #ifndef HCC36A64A_1A1B_4154_B016_8150C1E169E4
 #define HCC36A64A_1A1B_4154_B016_8150C1E169E4
 
-#include "engine/input/sdlinputif.hpp"
+#include "engine/input/interface/sdlinput.hpp"
 
 #include "engine/core/interface/signal.hpp"
-#include "engine/input/commanderif.hpp"
+#include "engine/input/interface/commander.hpp"
 
 #include <SDL.h>
 
@@ -33,9 +33,9 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-class SdlInput: public SdlInputIF {
+class SdlInput: public interface::SdlInput {
 public:
-    SdlInput(core::interface::Signal& signal, CommanderIF& commander);
+    SdlInput(core::interface::Signal& signal, interface::Commander& commander);
     virtual ~SdlInput();
 
     virtual int handleEvents() override;
@@ -48,7 +48,7 @@ public:
 
 private:
     core::interface::Signal& m_signal;
-    CommanderIF& m_commander;
+    interface::Commander& m_commander;
     SDL_Event m_event;
 
     api::Input::Button m_trTable[SDL_NUM_SCANCODES + MOUSE_BUTTONS];

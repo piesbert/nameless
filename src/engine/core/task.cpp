@@ -30,7 +30,7 @@ Task::Task()
 Task::~Task() {
 }
 
-void Task::attach(TaskObserverIF* taskObserver) {
+void Task::attach(interface::TaskObserver* taskObserver) {
     m_taskObserver = taskObserver;
 }
 

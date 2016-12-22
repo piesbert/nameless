@@ -23,7 +23,7 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-TaskObserver::TaskObserver(SdlInputIF& sdlInput)
+TaskObserver::TaskObserver(interface::SdlInput& sdlInput)
 : m_sdlInput {sdlInput} {
 }
 

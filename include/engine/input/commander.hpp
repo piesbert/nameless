@@ -20,7 +20,7 @@
 #ifndef H15F12A9D_FFE3_4D19_B8DE_CE21518A235C
 #define H15F12A9D_FFE3_4D19_B8DE_CE21518A235C
 
-#include "engine/input/commanderif.hpp"
+#include "engine/input/interface/commander.hpp"
 
 #include <array>
 
@@ -28,7 +28,7 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-class Commander: public CommanderIF {
+class Commander: public interface::Commander {
 public:
     Commander();
     virtual ~Commander();

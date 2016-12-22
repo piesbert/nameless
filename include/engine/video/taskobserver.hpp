@@ -20,13 +20,13 @@
 #ifndef H8B62D135_B047_43FE_A522_A90527148ED4
 #define H8B62D135_B047_43FE_A522_A90527148ED4
 
-#include "engine/core/taskobserverif.hpp"
+#include "engine/core/interface/taskobserver.hpp"
 
 namespace nameless {
 namespace engine {
 namespace video {
 
-class TaskObserver: public core::TaskObserverIF {
+class TaskObserver: public core::interface::TaskObserver {
 public:
     TaskObserver();
     virtual ~TaskObserver();

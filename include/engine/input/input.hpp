@@ -22,7 +22,7 @@
 
 #include "engine/api/input.hpp"
 #include "engine/api/command.hpp"
-#include "engine/input/sdlinputif.hpp"
+#include "engine/input/interface/sdlinput.hpp"
 
 namespace nameless {
 namespace engine {
@@ -30,7 +30,7 @@ namespace input {
 
 class Input: public api::Input {
 public:
-    Input(SdlInputIF& sdlInput);
+    Input(interface::SdlInput& sdlInput);
     virtual ~Input();
 
     virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) const override;
@@ -40,7 +40,7 @@ public:
     Input& operator=(const Input&) = delete;
 
 private:
-    SdlInputIF& m_sdlInput;
+    interface::SdlInput& m_sdlInput;
 };
 
 } // namespace input

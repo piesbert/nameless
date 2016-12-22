@@ -1,4 +1,4 @@
-/* File:    taskif.hpp
+/* File:    interface::sdlinput.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,25 +17,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H4C9483F6_59B4_488D_85ED_7D0AABD6416B
-#define H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#ifndef HB145BE7E_B032_4C23_8B5F_3318D17F7480
+#define HB145BE7E_B032_4C23_8B5F_3318D17F7480
+
+#include "engine/api/command.hpp"
+#include "engine/api/input.hpp"
 
 namespace nameless {
 namespace engine {
-namespace core {
+namespace input {
+namespace interface {
 
-class TaskObserverIF;
-
-class TaskIF {
+class SdlInput {
 public:
-    virtual ~TaskIF() {};
+    virtual ~SdlInput() {};
 
-    virtual void attach(TaskObserverIF* taskObserver) = 0;
-    virtual void run() const = 0;
+    virtual int handleEvents() = 0;
+
+    virtual api::Input::Button attachCommand(api::Command* command, api::Input::Button button) = 0;
+    virtual api::Input::Button attachCommand(api::Command* command) = 0;
 };
 
-} // namespace core
+} // namespace interface
+} // namespace input
 } // namespace engine
 } // namespace nameless
 
-#endif // H4C9483F6_59B4_488D_85ED_7D0AABD6416B
+#endif // HB145BE7E_B032_4C23_8B5F_3318D17F7480

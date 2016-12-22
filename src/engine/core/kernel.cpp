@@ -28,7 +28,7 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-Kernel::Kernel(TaskIF& inputTask, TaskIF& soundTask, TaskIF& stateTask, TaskIF& videoTask) 
+Kernel::Kernel(interface::Task& inputTask, interface::Task& soundTask, interface::Task& stateTask, interface::Task& videoTask) 
 : m_inputTask {inputTask},
   m_soundTask {soundTask},
   m_stateTask {stateTask},

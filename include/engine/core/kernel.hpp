@@ -22,7 +22,7 @@
 
 #include "engine/core/interface/kernel.hpp"
 
-#include "engine/core/taskif.hpp"
+#include "engine/core/interface/task.hpp"
 
 namespace nameless {
 namespace engine {
@@ -30,7 +30,7 @@ namespace core {
 
 class Kernel: public interface::Kernel {
 public:
-    Kernel(TaskIF& inputTask, TaskIF& soundTask, TaskIF& stateTask, TaskIF& videoTask);
+    Kernel(interface::Task& inputTask, interface::Task& soundTask, interface::Task& stateTask, interface::Task& videoTask);
     virtual ~Kernel();
     
     virtual void start() override;
@@ -42,10 +42,10 @@ public:
 private:
     bool m_running {true};
 
-    TaskIF& m_inputTask;
-    TaskIF& m_soundTask;
-    TaskIF& m_stateTask;
-    TaskIF& m_videoTask;
+    interface::Task& m_inputTask;
+    interface::Task& m_soundTask;
+    interface::Task& m_stateTask;
+    interface::Task& m_videoTask;
 };
 
 } // namespace core

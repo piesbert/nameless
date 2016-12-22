@@ -23,7 +23,7 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-Input::Input(input::SdlInputIF& sdlInput)
+Input::Input(input::interface::SdlInput& sdlInput)
 : m_sdlInput {sdlInput} {
 }
 

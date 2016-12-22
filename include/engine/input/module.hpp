@@ -24,8 +24,8 @@
 
 #include "engine/api/input.hpp"
 #include "engine/core/interface/signal.hpp"
-#include "engine/input/commanderif.hpp"
-#include "engine/input/sdlinputif.hpp"
+#include "engine/input/interface/commander.hpp"
+#include "engine/input/interface/sdlinput.hpp"
 
 #include <memory>
 
@@ -39,7 +39,7 @@ public:
     virtual ~Module();
 
     virtual void build() override;
-    virtual core::TaskObserverIF* getObserver() const override;
+    virtual core::interface::TaskObserver* getObserver() const override;
 
     virtual void provideApi(api::Game& game) const override;
 
@@ -49,9 +49,9 @@ public:
 private:
     core::interface::Signal& m_signal;
 
-    std::unique_ptr<core::TaskObserverIF> m_taskObserver;
-    std::unique_ptr<SdlInputIF> m_sdlInput;
-    std::unique_ptr<CommanderIF> m_commander;
+    std::unique_ptr<core::interface::TaskObserver> m_taskObserver;
+    std::unique_ptr<interface::SdlInput> m_sdlInput;
+    std::unique_ptr<interface::Commander> m_commander;
     std::unique_ptr<api::Input> m_input;
 
 };

@@ -25,21 +25,21 @@
 #include "gmock/gmock.h"
 
 namespace nameless {
-namespace test {
 namespace engine {
 namespace core {
+namespace test {
 namespace mock {
 
-class Kernel: public nameless::engine::core::interface::Kernel {
+class Kernel: public interface::Kernel {
 public:
     MOCK_METHOD0(start, void());
     MOCK_METHOD0(kill, void());
 };
 
 } // namespace mock
+} // namespace test
 } // namespace core
 } // namespace engine
-} // namespace test
 } // namespace nameless
 
 #endif // H42BB1E06_3564_4A8E_B633_05ED4489CF70

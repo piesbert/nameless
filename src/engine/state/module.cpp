@@ -36,7 +36,7 @@ void Module::build() {
     m_taskObserver = std::make_unique<TaskObserver>();
 }
 
-core::TaskObserverIF* Module::getObserver() const {
+core::interface::TaskObserver* Module::getObserver() const {
     return m_taskObserver.get();
 }
 
