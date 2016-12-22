@@ -20,16 +20,17 @@
 #ifndef H83B3828A_93DA_4049_83AD_FBB4F94637DC
 #define H83B3828A_93DA_4049_83AD_FBB4F94637DC
 
-#include "engine/core/signalif.hpp"
-#include "engine/core/kernelif.hpp"
+#include "engine/core/interface/signal.hpp"
+
+#include "engine/core/interface/kernel.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Signal: public SignalIF {
+class Signal: public interface::Signal {
 public:
-    Signal(KernelIF& kernel);
+    Signal(interface::Kernel& kernel);
     virtual ~Signal();
 
     virtual void kill() const override;
@@ -38,7 +39,7 @@ public:
     Signal& operator=(const Signal&) = delete;
 
 private:
-    KernelIF& m_kernel;
+    interface::Kernel& m_kernel;
 };
 
 } // namespace core

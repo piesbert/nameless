@@ -1,4 +1,4 @@
-/* File:    signalif.hpp
+/* File:    interface/media.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
-#define HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
+#ifndef H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#define H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
 
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class SignalIF {
+class Media {
 public:
-    virtual ~SignalIF() {};
+    virtual ~Media() {};
 
-    virtual void kill() const = 0;
+    virtual bool init() = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
+#endif // H2E3CDD9E_F7A7_4134_BB44_38621450DD3F

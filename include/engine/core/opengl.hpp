@@ -20,18 +20,18 @@
 #ifndef HEBEDD1AA_BB63_41E0_BFDB_2B6280748EA0
 #define HEBEDD1AA_BB63_41E0_BFDB_2B6280748EA0
 
-#include "engine/core/openglif.hpp"
+#include "engine/core/interface/opengl.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class OpenGl: public OpenGlIF {
+class OpenGl: public interface::OpenGl {
 public:
     OpenGl();
     virtual ~OpenGl();
 
-    static OpenGlIF& call();
+    static interface::OpenGl& call();
 
     inline virtual GLenum glewInit() const override final;
     inline virtual void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) const override final;

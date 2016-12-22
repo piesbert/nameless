@@ -20,12 +20,12 @@
 #ifndef H729CB886_658D_477A_A723_9A1788E6AA65
 #define H729CB886_658D_477A_A723_9A1788E6AA65
 
-#include "engine/core/engineif.hpp"
+#include "engine/core/interface/engine.hpp"
 
-#include "engine/core/kernelif.hpp"
-#include "engine/core/mediaif.hpp"
-#include "engine/core/moduleif.hpp"
-#include "engine/core/signalif.hpp"
+#include "engine/core/interface/kernel.hpp"
+#include "engine/core/interface/media.hpp"
+#include "engine/core/interface/module.hpp"
+#include "engine/core/interface/signal.hpp"
 #include "engine/core/taskif.hpp"
 
 #include <memory>
@@ -34,7 +34,7 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-class Engine: public EngineIF {
+class Engine: public interface::Engine {
 public:
     Engine(api::Game& game);
     virtual ~Engine();
@@ -47,15 +47,15 @@ public:
 private:
     api::Game& m_game;
 
-    std::unique_ptr<KernelIF> m_kernel;
-    std::unique_ptr<SignalIF> m_signal;
+    std::unique_ptr<interface::Kernel> m_kernel;
+    std::unique_ptr<interface::Signal> m_signal;
 
-    std::unique_ptr<MediaIF> m_media;
+    std::unique_ptr<interface::Media> m_media;
 
-    std::unique_ptr<ModuleIF> m_inputModule;
-    std::unique_ptr<ModuleIF> m_soundModule;
-    std::unique_ptr<ModuleIF> m_stateModule;
-    std::unique_ptr<ModuleIF> m_videoModule;
+    std::unique_ptr<interface::Module> m_inputModule;
+    std::unique_ptr<interface::Module> m_soundModule;
+    std::unique_ptr<interface::Module> m_stateModule;
+    std::unique_ptr<interface::Module> m_videoModule;
 
     std::unique_ptr<TaskIF> m_inputTask;
     std::unique_ptr<TaskIF> m_soundTask;

@@ -20,7 +20,7 @@
 #ifndef H42BB1E06_3564_4A8E_B633_05ED4489CF70
 #define H42BB1E06_3564_4A8E_B633_05ED4489CF70
 
-#include "engine/core/kernelif.hpp"
+#include "engine/core/interface/kernel.hpp"
 
 #include "gmock/gmock.h"
 
@@ -30,7 +30,7 @@ namespace engine {
 namespace core {
 namespace mock {
 
-class Kernel: public nameless::engine::core::KernelIF {
+class Kernel: public nameless::engine::core::interface::Kernel {
 public:
     MOCK_METHOD0(start, void());
     MOCK_METHOD0(kill, void());

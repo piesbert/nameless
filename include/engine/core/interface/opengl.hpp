@@ -1,4 +1,4 @@
-/* File:    mediaif.hpp
+/* File:    interface/opengl.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
-#define H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#ifndef HBB00EA77_2E82_42A4_9ABD_04FCE860A237
+#define HBB00EA77_2E82_42A4_9ABD_04FCE860A237
+
+//#define GLEW_STATIC                                                             
+#include <GL/glew.h>
+#include <GL/gl.h>                                                              
+#include <GL/glu.h>
 
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class MediaIF {
+class OpenGl {
 public:
-    virtual ~MediaIF() {};
+    virtual ~OpenGl() {};
 
-    virtual bool init() = 0;
+    virtual GLenum glewInit() const = 0;
+    virtual void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) const = 0;
+    virtual void glClear(GLbitfield mask) const = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H2E3CDD9E_F7A7_4134_BB44_38621450DD3F
+#endif // HBB00EA77_2E82_42A4_9ABD_04FCE860A237

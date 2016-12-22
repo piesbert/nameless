@@ -26,7 +26,7 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-SdlInput::SdlInput(core::SignalIF& signal, CommanderIF& commander)
+SdlInput::SdlInput(core::interface::Signal& signal, CommanderIF& commander)
 : m_signal {signal},
   m_commander {commander} {
     // Keyboard

@@ -22,8 +22,8 @@
 
 #include "engine/input/sdlinputif.hpp"
 
+#include "engine/core/interface/signal.hpp"
 #include "engine/input/commanderif.hpp"
-#include "engine/core/signalif.hpp"
 
 #include <SDL.h>
 
@@ -35,7 +35,7 @@ namespace input {
 
 class SdlInput: public SdlInputIF {
 public:
-    SdlInput(core::SignalIF& signal, CommanderIF& commander);
+    SdlInput(core::interface::Signal& signal, CommanderIF& commander);
     virtual ~SdlInput();
 
     virtual int handleEvents() override;
@@ -47,7 +47,7 @@ public:
     SdlInput& operator=(const SdlInput&) = delete;
 
 private:
-    core::SignalIF& m_signal;
+    core::interface::Signal& m_signal;
     CommanderIF& m_commander;
     SDL_Event m_event;
 

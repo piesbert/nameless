@@ -28,7 +28,7 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-Module::Module(core::SignalIF& signal)
+Module::Module(core::interface::Signal& signal)
 : m_signal {signal} {
 }
 

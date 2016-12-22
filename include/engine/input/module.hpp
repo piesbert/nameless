@@ -20,12 +20,12 @@
 #ifndef H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
 #define H7C77C74F_AE5B_4DA9_BC50_67C10AA025FA
 
-#include "engine/core/moduleif.hpp"
+#include "engine/core/interface/module.hpp"
 
+#include "engine/api/input.hpp"
+#include "engine/core/interface/signal.hpp"
 #include "engine/input/commanderif.hpp"
 #include "engine/input/sdlinputif.hpp"
-#include "engine/api/input.hpp"
-#include "engine/core/signalif.hpp"
 
 #include <memory>
 
@@ -33,9 +33,9 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-class Module: public core::ModuleIF {
+class Module: public core::interface::Module {
 public:
-    Module(core::SignalIF& signal);
+    Module(core::interface::Signal& signal);
     virtual ~Module();
 
     virtual void build() override;
@@ -47,7 +47,7 @@ public:
     Module& operator=(const Module&) = delete;
 
 private:
-    core::SignalIF& m_signal;
+    core::interface::Signal& m_signal;
 
     std::unique_ptr<core::TaskObserverIF> m_taskObserver;
     std::unique_ptr<SdlInputIF> m_sdlInput;

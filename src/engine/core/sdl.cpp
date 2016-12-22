@@ -29,7 +29,7 @@ Sdl::Sdl() {
 Sdl::~Sdl() {
 }
 
-SdlIF& Sdl::call() {
+interface::Sdl& Sdl::call() {
     static Sdl sdlInstance;
     return sdlInstance;
 }

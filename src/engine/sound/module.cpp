@@ -25,7 +25,7 @@ namespace nameless {
 namespace engine {
 namespace sound {
 
-Module::Module(core::SignalIF& signal)
+Module::Module(core::interface::Signal& signal)
 : m_signal {signal} {
 }
 

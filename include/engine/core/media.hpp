@@ -20,16 +20,15 @@
 #ifndef H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
 #define H57EE9E60_7546_4F85_9C99_9B7E010B1F4B
 
-#include "engine/core/mediaif.hpp"
+#include "engine/core/interface/media.hpp"
 
-#include "engine/core/sdlif.hpp"
-#include "engine/core/openglif.hpp"
+#include <SDL.h>
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Media: public MediaIF {
+class Media: public interface::Media {
 public:
     Media();
     virtual ~Media();

@@ -20,9 +20,9 @@
 #ifndef HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
 #define HA302BBA9_EAAC_4900_B4A3_3095EFD2BFC4
 
-#include "engine/core/moduleif.hpp"
+#include "engine/core/interface/module.hpp"
 
-#include "engine/core/signalif.hpp"
+#include "engine/core/interface/signal.hpp"
 
 #include <memory>
 
@@ -30,9 +30,9 @@ namespace nameless {
 namespace engine {
 namespace sound {
 
-class Module: public core::ModuleIF {
+class Module: public core::interface::Module {
 public:
-    Module(core::SignalIF& signal);
+    Module(core::interface::Signal& signal);
     virtual ~Module();
 
     virtual void build() override;
@@ -44,7 +44,7 @@ public:
     Module& operator=(const Module&) = delete;
 
 private:
-    core::SignalIF& m_signal;
+    core::interface::Signal& m_signal;
 
     std::unique_ptr<core::TaskObserverIF> m_taskObserver;
 };

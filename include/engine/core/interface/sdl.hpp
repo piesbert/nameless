@@ -1,4 +1,4 @@
-/* File:    sdlif.hpp
+/* File:    interface/sdl.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -25,10 +25,11 @@
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class SdlIF {
+class Sdl {
 public:
-    virtual ~SdlIF() {};
+    virtual ~Sdl() {};
 
     virtual int SDL_Init(Uint32 flags) const = 0;
     virtual void SDL_Quit() const = 0;
@@ -45,6 +46,7 @@ public:
     virtual void SDL_GL_SwapWindow(SDL_Window* window) const = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless

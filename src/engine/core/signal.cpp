@@ -18,14 +18,13 @@
  */
 
 #include "engine/core/signal.hpp"
-
 #include "engine/log/log.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-Signal::Signal(KernelIF& kernel)
+Signal::Signal(interface::Kernel& kernel)
 : m_kernel {kernel} {
 }
 

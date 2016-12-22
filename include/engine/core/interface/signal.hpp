@@ -1,4 +1,4 @@
-/* File:    kernelif.hpp
+/* File:    interface/signal.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,23 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H11279318_97F1_48DC_9DFA_C6109C4AD6AF
-#define H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#ifndef HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
+#define HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2
 
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class KernelIF {
+class Signal {
 public:
-    virtual ~KernelIF() {};
+    virtual ~Signal() {};
 
-    virtual void start() = 0;
-    virtual void kill() = 0;
+    virtual void kill() const = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#endif // HEB0194EE_316F_4F2B_A6EC_F0524C1E25B2

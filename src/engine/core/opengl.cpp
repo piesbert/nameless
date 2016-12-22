@@ -32,7 +32,7 @@ OpenGl::OpenGl() {
 OpenGl::~OpenGl() {
 }
 
-OpenGlIF& OpenGl::call() {
+interface::OpenGl& OpenGl::call() {
     static OpenGl openGlInstance;
     return openGlInstance;
 }

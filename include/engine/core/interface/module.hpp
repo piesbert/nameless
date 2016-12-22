@@ -1,4 +1,4 @@
-/* File:    engineif.hpp
+/* File:    interface/module.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,22 +17,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
-#define H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#ifndef H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
+#define H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
+
+#include "engine/api/game.hpp"
+#include "engine/core/taskobserverif.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class EngineIF {
+class Module {
 public:
-    virtual ~EngineIF() {};
+    virtual ~Module() {};
 
-    virtual bool start() = 0;
+    virtual void build() = 0;
+    virtual TaskObserverIF* getObserver() const = 0;
+
+    virtual void provideApi(api::Game& game) const = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H3015AC03_D8D2_4406_9F6A_BDEB46404EE5
+#endif // H5607D8B1_D34D_4197_B77A_0346C9D4EC4D

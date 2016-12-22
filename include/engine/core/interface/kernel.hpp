@@ -1,4 +1,4 @@
-/* File:    moduleif.hpp
+/* File:    interface/kernel.hpp
  * Project: nameless
  * Author:  Sebastian Szymak <sebastian.szymak@gmail.com>
  *
@@ -17,29 +17,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
-#define H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
-
-#include "engine/api/game.hpp"
+#ifndef H11279318_97F1_48DC_9DFA_C6109C4AD6AF
+#define H11279318_97F1_48DC_9DFA_C6109C4AD6AF
 
 namespace nameless {
 namespace engine {
 namespace core {
+namespace interface {
 
-class TaskObserverIF;
-
-class ModuleIF {
+class Kernel {
 public:
-    virtual ~ModuleIF() {};
+    virtual ~Kernel() {};
 
-    virtual void build() = 0;
-    virtual TaskObserverIF* getObserver() const = 0;
-
-    virtual void provideApi(api::Game& game) const = 0;
+    virtual void start() = 0;
+    virtual void kill() = 0;
 };
 
+} // namespace interface
 } // namespace core
 } // namespace engine
 } // namespace nameless
 
-#endif // H5607D8B1_D34D_4197_B77A_0346C9D4EC4D
+#endif // H11279318_97F1_48DC_9DFA_C6109C4AD6AF

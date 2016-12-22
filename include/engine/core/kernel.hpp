@@ -20,7 +20,7 @@
 #ifndef H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
 #define H7858F920_30DE_45F2_8E2A_32D08DAE0DFA
 
-#include "engine/core/kernelif.hpp"
+#include "engine/core/interface/kernel.hpp"
 
 #include "engine/core/taskif.hpp"
 
@@ -28,7 +28,7 @@ namespace nameless {
 namespace engine {
 namespace core {
 
-class Kernel: public KernelIF {
+class Kernel: public interface::Kernel {
 public:
     Kernel(TaskIF& inputTask, TaskIF& soundTask, TaskIF& stateTask, TaskIF& videoTask);
     virtual ~Kernel();

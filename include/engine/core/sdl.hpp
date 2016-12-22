@@ -20,18 +20,18 @@
 #ifndef H16B1E272_B530_40FF_9734_D8FC161F9615
 #define H16B1E272_B530_40FF_9734_D8FC161F9615
 
-#include "engine/core/sdlif.hpp"
+#include "engine/core/interface/sdl.hpp"
 
 namespace nameless {
 namespace engine {
 namespace core {
 
-class Sdl: public SdlIF {
+class Sdl: public interface::Sdl {
 public:
     Sdl();
     virtual ~Sdl();
 
-    static SdlIF& call();
+    static interface::Sdl& call();
 
     inline virtual int SDL_Init(Uint32 flags) const override final;
     inline virtual void SDL_Quit() const override final;
