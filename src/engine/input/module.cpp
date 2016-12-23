@@ -28,8 +28,9 @@ namespace nameless {
 namespace engine {
 namespace input {
 
-Module::Module(core::interface::Signal& signal)
-: m_signal {signal} {
+Module::Module(core::interface::Signal& signal, core::interface::Sdl& sdl)
+: m_signal {signal},
+  m_sdl {sdl} {
 }
 
 Module::~Module() {
@@ -37,7 +38,7 @@ Module::~Module() {
 
 void Module::build() {
     m_commander = std::make_unique<Commander>();
-    m_sdlInput = std::make_unique<SdlInput>(m_signal, *m_commander);
+    m_sdlInput = std::make_unique<SdlInput>(m_signal, m_sdl, *m_commander);
     m_taskObserver = std::make_unique<TaskObserver>(*m_sdlInput);
     m_input = std::make_unique<Input>(*m_sdlInput);
 }

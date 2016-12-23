@@ -31,8 +31,6 @@ public:
     OpenGl();
     virtual ~OpenGl();
 
-    static interface::OpenGl& call();
-
     inline virtual GLenum glewInit() const override final;
     inline virtual void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) const override final;
     inline virtual void glClear(GLbitfield mask) const override final;

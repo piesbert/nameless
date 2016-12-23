@@ -32,11 +32,6 @@ OpenGl::OpenGl() {
 OpenGl::~OpenGl() {
 }
 
-interface::OpenGl& OpenGl::call() {
-    static OpenGl openGlInstance;
-    return openGlInstance;
-}
-
 inline GLenum OpenGl::glewInit() const {
     return ::glewInit();
 }

@@ -23,6 +23,7 @@
 #include "engine/input/interface/sdlinput.hpp"
 
 #include "engine/core/interface/signal.hpp"
+#include "engine/core/interface/sdl.hpp"
 #include "engine/input/interface/commander.hpp"
 
 #include <SDL.h>
@@ -35,7 +36,7 @@ namespace input {
 
 class SdlInput: public interface::SdlInput {
 public:
-    SdlInput(core::interface::Signal& signal, interface::Commander& commander);
+    SdlInput(core::interface::Signal& signal, core::interface::Sdl& sdl, interface::Commander& commander);
     virtual ~SdlInput();
 
     virtual int handleEvents() override;
@@ -48,6 +49,8 @@ public:
 
 private:
     core::interface::Signal& m_signal;
+    core::interface::Sdl& m_sdl;
+
     interface::Commander& m_commander;
     SDL_Event m_event;
 

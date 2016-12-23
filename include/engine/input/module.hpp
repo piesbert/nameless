@@ -24,6 +24,7 @@
 
 #include "engine/api/input.hpp"
 #include "engine/core/interface/signal.hpp"
+#include "engine/core/interface/sdl.hpp"
 #include "engine/input/interface/commander.hpp"
 #include "engine/input/interface/sdlinput.hpp"
 
@@ -35,7 +36,7 @@ namespace input {
 
 class Module: public core::interface::Module {
 public:
-    Module(core::interface::Signal& signal);
+    Module(core::interface::Signal& signal, core::interface::Sdl& sdl);
     virtual ~Module();
 
     virtual void build() override;
@@ -48,6 +49,7 @@ public:
 
 private:
     core::interface::Signal& m_signal;
+    core::interface::Sdl& m_sdl;
 
     std::unique_ptr<core::interface::TaskObserver> m_taskObserver;
     std::unique_ptr<interface::SdlInput> m_sdlInput;

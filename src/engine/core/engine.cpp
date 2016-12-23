@@ -21,6 +21,8 @@
 
 #include "engine/core/kernel.hpp"
 #include "engine/core/media.hpp"
+#include "engine/core/opengl.hpp"
+#include "engine/core/sdl.hpp"
 #include "engine/core/signal.hpp"
 #include "engine/core/task.hpp"
 
@@ -47,7 +49,7 @@ Engine::~Engine() {
 bool Engine::start() {
     bool retval {false};
 
-    m_media = std::make_unique<Media>();
+    buildMedia();
 
     if (m_media->init()) {
         buildKernel();
@@ -72,8 +74,15 @@ void Engine::buildKernel() {
     m_signal = std::make_unique<Signal>(*m_kernel);
 }
 
+void Engine::buildMedia() {
+    m_sdl = std::make_unique<Sdl>();
+    m_openGl = std::make_unique<OpenGl>();
+
+    m_media = std::make_unique<Media>(*m_sdl, *m_openGl);
+}
+
 bool Engine::buildModules() {
-    m_inputModule = std::make_unique<input::Module>(*m_signal);
+    m_inputModule = std::make_unique<input::Module>(*m_signal, *m_sdl);
     m_inputModule->build();
     m_inputModule->provideApi(m_game);
     m_soundModule = std::make_unique<sound::Module>(*m_signal);

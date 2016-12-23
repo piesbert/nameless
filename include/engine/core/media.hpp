@@ -22,6 +22,9 @@
 
 #include "engine/core/interface/media.hpp"
 
+#include "engine/core/interface/sdl.hpp"
+#include "engine/core/interface/opengl.hpp"
+
 #include <SDL.h>
 
 namespace nameless {
@@ -30,7 +33,7 @@ namespace core {
 
 class Media: public interface::Media {
 public:
-    Media();
+    Media(interface::Sdl& sdl, interface::OpenGl& openGl);
     virtual ~Media();
 
     virtual bool init() override;
@@ -39,6 +42,9 @@ public:
     Media& operator=(const Media&) = delete;
     
 private:
+    interface::Sdl& m_sdl;
+    interface::OpenGl& m_openGl;
+
     SDL_Window *m_window;
     SDL_GLContext m_glContext;
 

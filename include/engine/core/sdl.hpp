@@ -31,8 +31,6 @@ public:
     Sdl();
     virtual ~Sdl();
 
-    static interface::Sdl& call();
-
     inline virtual int SDL_Init(Uint32 flags) const override final;
     inline virtual void SDL_Quit() const override final;
 

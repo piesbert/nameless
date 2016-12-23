@@ -19,15 +19,15 @@
 
 #include "engine/input/sdlinput.hpp"
 
-#include "engine/core/sdl.hpp"
 #include "engine/log/log.hpp"
 
 namespace nameless {
 namespace engine {
 namespace input {
 
-SdlInput::SdlInput(core::interface::Signal& signal, interface::Commander& commander)
+SdlInput::SdlInput(core::interface::Signal& signal, core::interface::Sdl& sdl, interface::Commander& commander)
 : m_signal {signal},
+  m_sdl {sdl},
   m_commander {commander} {
     // Keyboard
     m_trTable[SDL_SCANCODE_UNKNOWN] = api::Input::KEY_UNKNOWN;
@@ -290,7 +290,7 @@ SdlInput::~SdlInput() {
 int SdlInput::handleEvents() {
     int eventCnt {0};
 
-    while(core::Sdl::call().SDL_PollEvent(&m_event)) {
+    while(m_sdl.SDL_PollEvent(&m_event)) {
         eventCnt++;
 
         switch (m_event.type) {

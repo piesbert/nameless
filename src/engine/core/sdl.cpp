@@ -29,11 +29,6 @@ Sdl::Sdl() {
 Sdl::~Sdl() {
 }
 
-interface::Sdl& Sdl::call() {
-    static Sdl sdlInstance;
-    return sdlInstance;
-}
-
 inline int Sdl::SDL_Init(Uint32 flags) const {
     return ::SDL_Init(flags);
 }

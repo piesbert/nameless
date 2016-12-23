@@ -25,6 +25,8 @@
 #include "engine/core/interface/kernel.hpp"
 #include "engine/core/interface/media.hpp"
 #include "engine/core/interface/module.hpp"
+#include "engine/core/interface/opengl.hpp"
+#include "engine/core/interface/sdl.hpp"
 #include "engine/core/interface/signal.hpp"
 #include "engine/core/interface/task.hpp"
 
@@ -50,6 +52,9 @@ private:
     std::unique_ptr<interface::Kernel> m_kernel;
     std::unique_ptr<interface::Signal> m_signal;
 
+    std::unique_ptr<interface::Sdl> m_sdl;
+    std::unique_ptr<interface::OpenGl> m_openGl;
+
     std::unique_ptr<interface::Media> m_media;
 
     std::unique_ptr<interface::Module> m_inputModule;
@@ -63,6 +68,7 @@ private:
     std::unique_ptr<interface::Task> m_videoTask;
 
     void buildKernel();
+    void buildMedia();
     bool buildModules();
 };
 
